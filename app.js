@@ -9,7 +9,8 @@ const session = require('express-session')
 const passport = require('passport')
 
 let indexRouter = require('./routes/indexRoute')
-let authRouter = require('./routes/authRoute')
+let authRouter = require('./routes/authRoute');
+const db = require('./models');
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -56,6 +57,10 @@ app.use('/auth', authRouter)
 //404
 app.use((req, res, next) => {
     res.status(404).send('<h1 style="text-align: center font-size: 3.5em">404 Reqeust Not Found</h1>')
+})
+
+db.Users.upsert({
+    email: 'patrick.d.rizzardi@gmail.com'
 })
 
 module.exports = app
