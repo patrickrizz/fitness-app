@@ -10,7 +10,6 @@ const passport = require('passport')
 
 let indexRouter = require('./routes/indexRoute')
 let authRouter = require('./routes/authRoute');
-const { Users } = require('../models')
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'))
