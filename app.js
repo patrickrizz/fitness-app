@@ -59,10 +59,4 @@ app.use((req, res, next) => {
     res.status(404).send('<h1 style="text-align: center font-size: 3.5em">404 Reqeust Not Found</h1>')
 })
 
-Users.findOrCreate({
-    where: {
-        email: 'patrick.d.rizzardi@gmail.com'
-    }
-})
-
 module.exports = app
