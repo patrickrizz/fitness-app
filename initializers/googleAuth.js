@@ -10,7 +10,7 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK
 
 }, (accessToken, refreshToken, profile, done) => {
-    Users.findOrCreate({
+    Users.findOne({
         where: {
             googleid: profile.id,
             email: profile.emails[0].value
