@@ -4,8 +4,25 @@
   "description": "Customize workouts, logs, AI",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo no tests",
+    "start": "nodemon ./bin/www",
+    "secure": "npm audit & snyk test & snyk wizard & snyk protect",
+    "db": "bash scripts/sequelize.sh"
   },
   "author": "Patrick Rizzardi",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0",
+    "snyk": "^1.377.1"
+  },
+  "devDependencies": {},
+  "snyk": true
 }
