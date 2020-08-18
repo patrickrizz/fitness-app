@@ -19,6 +19,8 @@
     "express-session": "^1.17.1",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.4",
     "sequelize-cli": "^6.2.0",
     "snyk": "^1.377.1"
