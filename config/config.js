@@ -21,11 +21,11 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB,
     host: process.env.DB_HOST,
-    dialect: "mysql",
-    dialectOptions: {
-      ssl: {
-        ca: fs.readFileSync(__dirname + '/mysql-ca.crt')
-      }
-    }
+    dialect: "postgres",
+    // dialectOptions: {
+    //   ssl: {
+    //     ca: fs.readFileSync(__dirname + '/mysql-ca.crt')
+    //   }
+    // }
   }
 }
