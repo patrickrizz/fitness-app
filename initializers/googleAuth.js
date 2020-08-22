@@ -1,6 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const { Users } = require('../models')
+const { User } = require('../models')
 
 passport.use(new GoogleStrategy({
 
@@ -10,7 +10,7 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK
 
 }, (accessToken, refreshToken, profile, done) => {
-    Users.findOrCreate({
+    User.findOrCreate({
         where: {
             googleid: profile.id,
             email: profile.emails[0].value
