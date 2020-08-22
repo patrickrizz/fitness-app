@@ -4,10 +4,11 @@ select task in models migrations seeds none; do
     case $task in
     models)
         read -p "Enter model name " name
-        read -p "Enter models path Ex. ./models " models_path
-        read -p "Enter migrations path Ex. ./migrations " migrations_path
+        #read -p "Enter models path Ex. ./models " models_path
+        #read -p "Enter migrations path Ex. ./migrations " migrations_path
         read -p "Enter model attributes Ex. username:string,password:string " attributes
-        npx sequelize model:generate --name $name --models-path $models_path --migrations-path $migrations_path --attributes $attributes
+        #npx sequelize model:generate --name $name --models-path $models_path --migrations-path $migrations_path --attributes $attributes
+        npx sequelize model:generate --name $name --models-path ./models --migrations-path ./migrations --attributes $attributes
         ;;
     migrations)
         PS3="Enter the number you want to do : "

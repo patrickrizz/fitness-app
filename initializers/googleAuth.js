@@ -16,7 +16,7 @@ passport.use(new GoogleStrategy({
             email: profile.emails[0].value
         }
     })
-
+    console.log(profile)
     return done(null, profile)
 }))
 
