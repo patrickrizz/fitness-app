@@ -12,7 +12,7 @@ passport.use(new GoogleStrategy({
 }, (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({
         where: {
-            googleid: profile.id,
+            google_id: profile.id,
             email: profile.emails[0].value
         }
     })
