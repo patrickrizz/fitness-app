@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define('User', {
+  const User = sequelize.define('User', {
     google_id: 'randomGoogleId',
     facebook_id: 'randomFBId',
     email: 'jondoe@test.com',
@@ -10,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     timestamp: false
 })
 
-Users.associate = function(models) {
-  Users.hasOne(models.Bodytype, {foreignKey: 'user_id'})
-  Users.hasOne(models.DietStrategies, {foreignKey: 'user_id'})
-  Users.hasOne(models.Goals, {foreignKey: 'user_id'})
-  Users.hasOne(models.Preferences, {foreignKey: 'user_id'})
-  Users.hasOne(models.Roles, {foreignKey: 'user_id'})
-  Users.hasOne(models.UserStats, {foreignKey: 'user_id'})
+User.associate = function(models) {
+  User.hasOne(models.Bodytype, {foreignKey: 'user_id'})
+  User.hasOne(models.DietStrategies, {foreignKey: 'user_id'})
+  User.hasOne(models.Goals, {foreignKey: 'user_id'})
+  User.hasOne(models.Preferences, {foreignKey: 'user_id'})
+  User.hasOne(models.Roles, {foreignKey: 'user_id'})
+  User.hasOne(models.UserStats, {foreignKey: 'user_id'})
 }
 
-return Users
+return User
 }

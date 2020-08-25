@@ -1,0 +1,134 @@
+// <nav>
+// <div class="nav-wrapper">
+//   <a href="#!" class="brand-logo">Logo</a>
+//   <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+//   <ul class="right hide-on-med-and-down">
+//     <li><a href="sass.html">Sass</a></li>
+//     <li><a href="badges.html">Components</a></li>
+//     <li><a href="collapsible.html">Javascript</a></li>
+//     <li><a href="mobile.html">Mobile</a></li>
+//   </ul>
+// </div>
+// </nav>
+
+// <ul class="sidenav" id="mobile-demo">
+// <li><a href="sass.html">Sass</a></li>
+// <li><a href="badges.html">Components</a></li>
+// <li><a href="collapsible.html">Javascript</a></li>
+// <li><a href="mobile.html">Mobile</a></li>
+// </ul>
+
+nav {
+  position: fixed;
+  z-index: 1;
+  transition: .3s;
+  padding-top: .75rem;
+  height: $navbar-height;
+  color: $navbar-font-color;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+              0 3px 1px -2px rgba(0,0,0,0.12),
+              0 1px 5px 0 rgba(0,0,0,0.2);
+  background-color: $navbar-bg-color;
+  width: 100%;
+  height: $navbar-height-mobile;
+  line-height: $navbar-line-height-mobile;
+
+  a {
+    color: $navbar-font-color;
+  }
+
+  .nav-wrapper {
+    position: relative;
+    height: 100%;
+  }
+
+  @media #{$large-and-up} {
+    a.sidenav-trigger {
+      display: none;
+    }
+  }
+
+
+  // Logo
+  .brand-logo {
+    position: absolute;
+    color: $navbar-font-color;
+    display: inline-block;
+    font-size: $navbar-brand-font-size;
+    padding: 0;
+
+    img {
+      padding: .5rem;
+      width: 55px;
+    }
+
+    &.center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @media #{$medium-and-down} {
+      left: 5%;
+      transform: translateX(-50%);
+
+      &.left,
+      &.right {
+        padding: 0;
+        transform: none;
+      }
+
+      &.left {
+        left: 0.5rem;
+      }
+
+      &.right {
+        right: 0.5rem;
+        left: auto;
+      }
+    }
+
+    &.right {
+      right: 0.5rem;
+      padding: 0;
+    }
+  }
+
+  // Navbar Links
+  ul {
+    margin: 0;
+
+    li {
+      transition: background-color .3s;
+      float: left;
+      padding: 0;
+
+      &.active {
+        background-color: rgba(0, 0, 0, .1);
+      }
+    }
+
+    a {
+      transition: background-color .3s;
+      font-size: $navbar-font-size;
+      color: $navbar-font-color;
+      display: block;
+      padding: 0 15px;
+      cursor: pointer;
+
+      &.btn,
+      &.btn-large {
+        margin-top: -2px;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .1);
+      }
+    }
+
+    &.left {
+      float: left;
+    }
+  }
+}

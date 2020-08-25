@@ -1,0 +1,59 @@
+.btn {
+  border: $button-border;
+  border-radius: $button-radius;
+  display: inline-block;
+  height: $button-height;
+  line-height: $button-height;
+  letter-spacing: .5px;
+  padding: $button-padding;
+  text-transform: uppercase;
+  vertical-align: middle;
+  text-align: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12),
+    0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  -webkit-tap-highlight-color: transparent; // Gets rid of tap active state
+  color: $button-font-color;
+  background: $button-bg-color;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten($button-bg-color, 5%);
+  }
+
+  &:focus {
+    background-color: darken($button-bg-color, 10%);
+  }
+}
+
+// Shared focus button style
+.btn {
+
+}
+
+// Large button
+.btn-large {
+  @extend .btn;
+  height: $button-large-height;
+  line-height: $button-large-height;
+  font-size: $button-large-font-size;
+  padding: 0 28px;
+
+  i {
+    font-size: $button-large-icon-font-size;
+  }
+}
+
+// Small button
+.btn-small {
+  @extend .btn;
+  height: $button-small-height;
+  line-height: $button-small-height;
+  font-size: $button-small-font-size;
+}
+
+// Block button
+.btn-block {
+  display: block;
+  width: 100%;
+}

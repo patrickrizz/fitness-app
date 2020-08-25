@@ -35,6 +35,7 @@ app.use(session({
 //passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+require('./initializers/localAuth')(passport)
 
 //express flash
 app.use(flash())

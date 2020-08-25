@@ -10,21 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasOne(models.BodyType, {foreignKey: 'user_id'})
-      User.hasOne(models.DietStrategy, {foreignKey: 'user_id'})
-      User.hasOne(models.Goal, {foreignKey: 'user_id'})
-      User.hasOne(models.Preference, {foreignKey: 'user_id'})
-      User.hasOne(models.Role, {foreignKey: 'user_id'})
-      User.hasOne(models.UserStats, {foreignKey: 'user_id'})
+      // define association here
     }
   };
   User.init({
-    google_id: DataTypes.STRING,
+    google_id: {
+      unique: true,
+      type: DataTypes.STRING
+    },
     facebook_id: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING
+    name: DataTypes.STRING,
+    set_up: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'User',

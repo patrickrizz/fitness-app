@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const { User } = require('../models')
+const { v4: uuidv4 } = require('uuid');
 
 passport.use(new GoogleStrategy({
 
@@ -12,11 +13,12 @@ passport.use(new GoogleStrategy({
 }, (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({
         where: {
+            id: profile.id,
             google_id: profile.id,
-            email: profile.emails[0].value
+            email: profile.emails[0].value,
+            name: profile.displayName
         }
     })
-    console.log(profile)
     return done(null, profile)
 }))
 

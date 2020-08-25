@@ -1,0 +1,81 @@
+<%- include('partials/_head') %>
+<div class="login-bg">
+    <section id=sign-up class="container">
+        <div class="row center">
+            <h1>Ground Zero</h1>
+            <% if(typeof errors !='undefined'){ %>
+            <% errors.forEach(function(error){ %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%=error.msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <%}); %>
+            <%} %>
+            <% if(success_msg !=''){ %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=success_msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <%} %><% if(error_msg !=''){ %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error_msg %><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <%} %><% if(error !=''){ %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <%} %>
+            <form id=sign-up-form class="col s12" action="/sign-up" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" class="validate" name="name">
+                        <label for="name">Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate" name="email">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate" name="password">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate" name="password2">
+                        <label for="password">Confirm Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <button class="btn btn-block" type="submit">Create My
+                            Account</button>
+                    </div>
+                    <div class="col s12 m6">
+                        <a class="btn btn-block" href="/">I'm Already A Member</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4">
+                        <a href="/auth/google"><img class="responsive-img" src="./images/google.png"
+                                alt="google sign-in"></i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+<%- include('partials/_footer') %>
