@@ -87,6 +87,7 @@ Order from start to finish:
                     - 2 compound
                     - 3 isolation
                     - 2 supplemental 7 sets 8-12 reps
+            Select workout difficulty, if to hard or to easy, adapt a new workout plan for that specific muscle group (the idea is that each person has their own strengths and weaknesses. My arms and chest are dominent, others might not be the same.)
 
 
 
