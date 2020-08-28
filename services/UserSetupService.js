@@ -6,20 +6,18 @@ class UserSetupService {
         this.req = req
     }
 
-    userSetup() {        
+    userSetup() {
         let set_up = true
-        let xp = this.req.body.xp
-        let goals = this.req.body.goals
-        let strategy = this.req.body.strategy
+        let { xp, goals, strategy } = this.req.body
 
-        User.findOne({
-            where: { id: id },
-            include: [Experience, Goal]
-        }).then((setup => {
-            setup.update({
-                xp, goal
-            })
-        }))
+        // User.findOne({
+        //     where: { id: this.id },
+        //     include: [Experience, Goal]
+        // }).then((setup => {
+        //     setup.update({
+        //         xp, goal
+        //     })
+        // }))
 
        // Once setup is complete, set to true
         User.findOne({

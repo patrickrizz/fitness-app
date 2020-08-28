@@ -1,6 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const { User } = require('../models')
+const { User, Experience, Goal, Strategy, UserStats, Role } = require('../models')
 
 passport.use(new GoogleStrategy({
 
@@ -9,8 +9,8 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK
 
-}, (accessToken, refreshToken, profile, done) => {
-    User.findOrCreate({
+}, async (accessToken, refreshToken, profile, done) => {
+    await User.findOrCreate({
         where: {
             id: profile.id,
             google_id: profile.id,
@@ -18,8 +18,25 @@ passport.use(new GoogleStrategy({
             name: profile.displayName
         }
     })
+    await Experience.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    await Goal.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    await Strategy.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    await UserStats.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    await Role.findOrCreate({
+        where: { user_id: profile.id, role: 'member' }
+    })
+
     return done(null, profile)
 }))
+
 
 //after strategy is done, you serialize the user
 passport.serializeUser((user, done) => {

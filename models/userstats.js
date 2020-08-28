@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserStats.init({
-    user_id: DataTypes.INTEGER,
+    user_id: DataTypes.STRING,
     weight: DataTypes.FLOAT,
     bmi: DataTypes.FLOAT,
     body_fat: DataTypes.FLOAT,

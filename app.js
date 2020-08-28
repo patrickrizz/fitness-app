@@ -9,7 +9,8 @@ const session = require('express-session')
 const passport = require('passport')
 
 let indexRouter = require('./routes/indexRoute')
-let authRouter = require('./routes/authRoute');
+let authRouter = require('./routes/authRoute')
+let adminRouter = require('./routes/adminRoute')
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -53,6 +54,7 @@ app.use(function (req, res, next) {
 //routes
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/admin', adminRouter)
 
 //404
 app.use((req, res, next) => {
