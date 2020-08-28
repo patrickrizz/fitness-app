@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Preference.init({
-    user_id: DataTypes.INTEGER,
+    user_id: DataTypes.STRING,
     liked_excersice_id: DataTypes.INTEGER,
     liked_workout_id: DataTypes.INTEGER,
     liked_excercise_strategy_id: DataTypes.INTEGER,

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-     User.hasOne(models.Experience, {foreignKey: 'user_id'})
+     User.hasOne(models.ExperienceLevel, {foreignKey: 'user_id'})
      User.hasMany(models.Goal, {foreignKey: 'user_id'})
      User.hasOne(models.Strategy, {foreignKey: 'user_id'})
      User.hasOne(models.UserStats, {foreignKey: 'user_id'})

@@ -17,12 +17,6 @@ module.exports = {
       xp_level: {
         type: Sequelize.INTEGER
       },
-      goal_id: {
-        type: Sequelize.INTEGER
-      },
-      description: {
-        type: Sequelize.TEXT
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

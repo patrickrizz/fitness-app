@@ -1,4 +1,4 @@
-const { User, Experience, Goals, Strategy, UserStats, Role } = require('../models')
+const { User, ExperienceLevel, Goal, Strategy, UserStats, Role } = require('../models')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
 
@@ -64,22 +64,20 @@ class UserRegisterService {
                                 if (err) throw err
 
                                 newUser.password = hash
-                                newUser
-                                    .save()
+                                newUser.save()
                                 await this._req.flash(
                                     'success_msg',
                                     'You are now registered and can log in'
                                 )
                             })
-                        }
-                        catch { (err => console.log(err)) }
+                        } catch { (err => console.log(err)) }
                     })
                 }
             }).then(() => {
-                Experience.findOrCreate({
+                ExperienceLevel.findOrCreate({
                     where: { user_id: this._uuid }
                 })
-                Goals.findOrCreate({
+                Goal.findOrCreate({
                     where: { user_id: this._uuid }
                 })
                 Strategy.findOrCreate({
@@ -104,7 +102,7 @@ class UserRegisterService {
                 name: this._profile.displayName
             }
         })
-        Experience.findOrCreate({
+        ExperienceLevel.findOrCreate({
             where: { user_id: this._profile.id }
         })
         Goal.findOrCreate({

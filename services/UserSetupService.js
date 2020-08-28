@@ -1,4 +1,4 @@
-const { User, Experience, Goal, Strategy } = require('../models')
+const { User, ExperienceLevel, Goal, Strategy } = require('../models')
 
 class UserSetupService {
     constructor(req) {
@@ -12,7 +12,7 @@ class UserSetupService {
 
         // User.findOne({
         //     where: { id: this.id },
-        //     include: [Experience, Goal]
+        //     include: [ExperienceLevel, Goal]
         // }).then((setup => {
         //     setup.update({
         //         xp, goal
@@ -27,10 +27,10 @@ class UserSetupService {
         })
 
         // Adds xp level to db
-        Experience.findOne({
+        ExperienceLevel.findOne({
             where: { user_id: this.id }
         }).then(setup => {
-            setup.update({ xp })
+            setup.update({ xp_level })
         })
 
         // Adds goals to db

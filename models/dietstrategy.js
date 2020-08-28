@@ -14,9 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   DietStrategy.init({
-    user_id: DataTypes.INTEGER,
-    diet_strategy: DataTypes.STRING,
-    description: DataTypes.TEXT
+    user_id: DataTypes.STRING,
+    diet_strategy: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'DietStrategy',

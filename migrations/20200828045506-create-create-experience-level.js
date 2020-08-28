@@ -1,15 +1,18 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('excercises', {
+    await queryInterface.createTable('CreateExperienceLevels', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      excercise: {
+      xp_level: {
         type: Sequelize.STRING
+      },
+      xp_description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -22,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('excercises');
+    await queryInterface.dropTable('CreateExperienceLevels');
   }
 };

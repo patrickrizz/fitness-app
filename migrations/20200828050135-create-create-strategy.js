@@ -1,18 +1,21 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('recipes', {
+    await queryInterface.createTable('CreateStrategies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ingredients_id: {
-        type: Sequelize.INTEGER
-      },
-      recipe: {
+      strategy: {
         type: Sequelize.STRING
+      },
+      xp_level: {
+        type: Sequelize.STRING
+      },
+      strategy_description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +28,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('recipes');
+    await queryInterface.dropTable('CreateStrategies');
   }
 };

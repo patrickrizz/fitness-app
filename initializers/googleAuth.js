@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const UserRegisterService = require('../services/UserRegisterService')
+const {User, ExperienceLevel, Goal, Strategy, UserStats, Role } = require('../models')
 
 passport.use(new GoogleStrategy({
 
@@ -9,8 +10,30 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK
 
-}, async (accessToken, refreshToken, profile, done) => {
-    new UserRegisterService(profile).registerUserGoogle
+}, (accessToken, refreshToken, profile, done) => {
+    User.findOrCreate({
+        where: {
+            id: profile.id,
+            google_id: profile.id,
+            email: profile.emails[0].value,
+            name: profile.displayName
+        }
+    })
+    ExperienceLevel.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    Goal.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    Strategy.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    UserStats.findOrCreate({
+        where: { user_id: profile.id }
+    })
+    Role.findOrCreate({
+        where: { user_id: profile.id, role: 'member' }
+    })
 
     return done(null, profile)
 }))

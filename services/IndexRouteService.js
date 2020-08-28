@@ -11,19 +11,15 @@ class IndexRouteService {
             let user = ''
 
             return {
-                user: user,
-                logo: this._logo
+                user: user
             }
         } else {
             let user = await this._req.user
             let profile = await this._profile.userData
-            let xp = await profile.Experience.dataValues
 
             return {
                 profile: profile,
-                xp: xp,
-                user: user,
-                logo: this._logo
+                user: user
             }
         }
     }
