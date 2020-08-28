@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const IndexRouteService = require('../services/IndexRouteService')
 const { ensureAuthenticated } = require('../lib/authentication')
-const { User } = require('../models')
+const { User, Experience, Goal, Strategy } = require('../models')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid');
 
@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     let id
     (!req.user) ? email = null : id = req.user.id
     let params = await new IndexRouteService(req, id).params()
-    await res.render('index', {...params})
+    res.render('index', { ...params })
 })
 
 router.get('/sign-up', (req, res) => {
@@ -90,6 +90,55 @@ router.post('/sign-up', (req, res) => {
                 }
             })
     }
+})
+
+router.post('/set-up', ensureAuthenticated, (req, res) => {
+    let { xp, goals, strategy } = req.body
+    let id = req.user.id
+    let set_up = true
+    
+    // User.findOne({
+    //     where: { id: id },
+    //     include: [Experience, Goal]
+    // }).then((setup => {
+    //     setup.update({
+    //         xp, goal, include: [Experience, Goal]
+    //     })
+    // }))
+
+    for(goals in goals) {
+        goals = goals.concat(goals, goals[i])
+    }
+
+    // Once setup is complete, set to true
+    User.findOne({
+        where: { id: id }
+    }).then(setup => {
+        setup.update({ set_up })
+    })
+
+    // Adds xp level to db
+    Experience.findOne({
+        where: { user_id: id }
+    }).then(setup => {
+        setup.update({ xp })
+    })
+
+    // Adds goals to db
+    Goal.findOne({
+        where: { user_id: id }
+    }).then(setup => {
+        setup.update({ goals })
+    })
+
+    // Adds strategy to db
+    Strategy.findOne({
+        where: { user_id: id }
+    }).then(setup => {
+        setup.update({ strategy })
+    })
+
+    res.redirect('/')
 })
 
 module.exports = router

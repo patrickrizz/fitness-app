@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Goal.init({
-    user_id: DataTypes.INTEGER,
+    user_id: DataTypes.STRING,
     goals: DataTypes.STRING,
-    description: DataTypes.TEXT
+    description: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Goal',

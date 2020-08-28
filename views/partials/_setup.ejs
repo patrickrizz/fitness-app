@@ -1,34 +1,102 @@
-<section id=set-up class="container">
-    <div class="row center">
-        <h1>Welcome <%- profile.name -%>!</h1>
-        <form id=set-up-form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="name" type="text" class="validate">
-                    <label for="name">Name</label>
-                </div>
+<%- include('_head') %>
+<div class="login-bg">
+    <section id=sign-up class="container">
+        <div class="row center">
+            <h1>Set up your account</h1>
+            <% if(typeof errors !='undefined'){ %>
+            <% errors.forEach(function(error){ %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%=error.msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                </div>
+            <%}); %>
+            <%} %>
+            <% if(success_msg !=''){ %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=success_msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
-                </div>
+            <%} %><% if(error_msg !=''){ %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error_msg %><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="row">
-                <div class="col s12 m6">
-                    <button class="btn btn-block" type="submit" name="submit" form='sign-up-form'>Create My
-                        Account</button>
-                </div>
-                <div class="col s12 m6">
-                    <a class="btn btn-block" href="/">I'm Already A Member</a>
-                </div>
+            <%} %><% if(error !=''){ %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </form>
-    </div>
-</section>
+            <%} %>
+            <form id=sign-up-form class="col s12" action="/set-up" method="post">
+                <div class="row">
+                    <div class="input-field col s8 offset-s2">
+                        <select name="xp">
+                            <option value="" disabled selected>Choose your experience level:</option>
+                            <option value="Neophyte">Neophyte: Never even thought about fitness until now</option>
+                            <option value="Apprentice">Apprentice: Some Experience, Fitness is a hobby right now</option>
+                            <option value="Expert">Expert: Proficient, fitness is a lifestyle</option>
+                            <option value="Master">Master: Proffessional athlete</option>
+                        </select>
+                        <label>Experience</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>Select your goals:</p>
+                    <p class="col s3">
+                        <label>
+                            <input type="checkbox" name='goals[]' />
+                            <span>Weightloss</span>
+                        </label>
+                    </p>
+                    <p class="col s3">
+                        <label>
+                            <input type="checkbox" name='goals[]' />
+                            <span>Gain Muscle Mass</span>
+                        </label>
+                    </p>
+                    <p class="col s3">
+                        <label>
+                            <input type="checkbox" name='goals[]' />
+                            <span>Lean Out</span>
+                        </label>
+                    </p>
+                    <p class="col s3">
+                        <label>
+                            <input type="checkbox" name='goals[]' />
+                            <span>Endurance</span>
+                        </label>
+                    </p>
+                </div>
+                <% if(xp.xp == 'Expert' || xp.xp == 'Master'){ %>
+                <div class="row">
+                    <p>Select your strategy: (optional)</p>
+                    <div class="row">
+                        <div class="input-field col s8 offset-s2">
+                            <select name="strategy">
+                                <option value="" disabled selected>Choose a strategy to start with:</option>
+                                <option value="FST-7">FST-7</option>
+                                <option value="GVT">German Volume Training</option>
+                                <option value="Full Body">Full Body</option>
+                            </select>
+                            <label>Strategy</label>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <div class="row">
+                    <div class="col m6 offset-m3">
+                        <button class="btn btn-block" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+<%- include('_footer') %>
