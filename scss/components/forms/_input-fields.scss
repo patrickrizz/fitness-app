@@ -21,7 +21,7 @@ input[type=datetime-local]:not(.browser-default),
 input[type=tel]:not(.browser-default),
 input[type=number]:not(.browser-default),
 input[type=search]:not(.browser-default),
-textarea.textarea {
+textarea.materialize-textarea {
 
   // General Styles
   background-color: transparent;
@@ -37,7 +37,6 @@ textarea.textarea {
   box-shadow: none;
   box-sizing: content-box;
   transition: box-shadow .3s, border .3s;
-  color: $input-text-color;
 
   // Disabled input style
   &:disabled,
@@ -280,7 +279,7 @@ textarea.textarea {
 
     & + label i,
     & ~ .mdi-navigation-close,
-    & ~ .icons {
+    & ~ .material-icons {
       color: #444;
     }
   }
@@ -291,7 +290,7 @@ textarea.textarea {
   }
 
   & ~ .mdi-navigation-close,
-  & ~ .icons {
+  & ~ .material-icons {
     position: absolute;
     top: 0;
     right: 1rem;
@@ -311,7 +310,7 @@ textarea {
   height: $input-height;
   background-color: transparent;
 
-  &.textarea {
+  &.materialize-textarea {
     line-height: normal;
     overflow-y: hidden; /* prevents scroll bar flash */
     padding: .8rem 0 .8rem 0; /* prevents text jump on Enter keypress */

@@ -1,0 +1,383 @@
+.padding-5 {
+    padding: 5rem;
+}
+
+.padding-left-5 {
+    padding-left: 5rem;
+}
+
+.padding-right-5 {
+    padding-right: 5rem;
+}
+
+.padding-top-5 {
+    padding-top: 5rem;
+}
+
+.padding-bottom-5 {
+    padding-bottom: 5rem;
+}
+
+.padding-4 {
+    padding: 4rem;
+}
+
+.padding-left-4 {
+    padding-left: 4rem;
+}
+
+.padding-right-4 {
+    padding-right: 4rem;
+}
+
+.padding-top-4 {
+    padding-top: 4rem;
+}
+
+.padding-bottom-4 {
+    padding-bottom: 4rem;
+}
+
+.padding-3 {
+    padding: 3rem;
+}
+
+.padding-left-3 {
+    padding-left: 3rem;
+}
+
+.padding-right-3 {
+    padding-right: 3rem;
+}
+
+.padding-top-3 {
+    padding-top: 3rem;
+}
+
+.padding-bottom-3 {
+    padding-bottom: 3rem;
+}
+
+.padding-2 {
+    padding: 2rem;
+}
+
+.padding-left-2 {
+    padding-left: 2rem;
+}
+
+.padding-right-2 {
+    padding-right: 2rem;
+}
+
+.padding-top-2 {
+    padding-top: 2rem;
+}
+
+.padding-bottom-2 {
+    padding-bottom: 2rem;
+}
+
+.padding-1 {
+    padding: 1rem;
+}
+
+.padding-left-1 {
+    padding-left: 1rem;
+}
+
+.padding-right-1 {
+    padding-right: 1rem;
+}
+
+.padding-top-1 {
+    padding-top: 1rem;
+}
+
+.padding-bottom-1 {
+    padding-bottom: 1rem;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margins {
+    margin: 0;
+}
+
+.inline {
+    display: inline;
+}
+
+.comma ~ .comma:not(:empty):before {
+    content: ", ";
+}
+
+.no-decoration, a:link, a:visited, a:active{
+    text-decoration: none;
+    color: white!important;
+}
+
+.seperation-padding {
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
+.fs-30 {
+    font-size: 30px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.bg-color-2 {
+    background: $bg-color-2;
+}
+
+.bg-color {
+    background: $bg-color;
+}
+
+.link-color {
+    color: $button-color;
+
+    a {
+        color: $button-color;
+    }
+}
+
+.border-left {
+    border-left: 2px solid lighten($secondary-color, 10%);
+
+    &:hover {
+        color: $button-color;
+        background: lighten($bg-color, 5%);
+    }
+}
+
+.active {
+    border-color: $button-color;
+}
+
+.return-button {
+    border-radius: 50%;
+    border: 2px solid $button-color;
+    color: $button-color;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 50px;
+    text-align: center;
+    transition: all .7s;
+    opacity: 0;
+
+    &:hover {
+        background: lighten($bg-color, 20%);
+        border-color: darken($button-color, 60%);
+        transform: scale(1.2) rotate(2deg);
+    }
+}
+
+.btn-small,
+.btn-large {
+    transition: all .7s;
+
+    &:hover {
+        background: lighten($bg-color, 20%);
+        border-color: darken($button-color, 60%);
+        transform: scale(1.05);
+    }
+}
+
+.list-style li:before {
+    content: '▹';
+    margin-right: 10px;
+    color: $button-color;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.my-button {
+    color: $button-color;
+    background: none;
+    border: 1px solid $button-color;
+}
+
+#blog {
+    position: relative;
+    line-height: 0;
+    transition: 2s;
+
+    .overlay {
+        opacity: 1;
+
+        &:before {
+            opacity: .5;
+        }
+
+        &:hover {
+            filter: brightness(150%);
+        }
+
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+
+    .content {
+        position: absolute;
+        bottom: 10px;
+    }
+
+    h2 {
+        font-size: 42px;
+    }
+
+    @media #{$medium-and-up} {
+        h3 {
+            font-size: 24px!important;
+        }
+      }
+
+}
+
+.overlay {
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: .7; // background: rgba(0,196,255,1);
+        background: #000;
+    }
+}
+
+#header {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: $primary-color;
+    padding-top: 260px;
+    padding-bottom: 300px;
+
+
+    h1 {
+        position: relative;
+        font-weight: 900;
+        margin: 0;
+        padding-bottom: 1rem;
+    }
+
+    h2 {
+        position: relative;
+        margin: 0;
+    }
+
+    p {
+        position: relative;
+        margin: 0;
+        padding-top: 1.5rem;
+
+        a {
+            text-decoration: underline;
+            font-weight: 700;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+#searchUser {
+    color: #fff;
+}
+
+footer {
+    min-height: 5rem;
+}
+
+// Clash styles
+
+.clan {
+
+    &::before {
+        content: '';
+        background: url('../images/clash.jpg');
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: .3;
+        z-index: -1;
+    }
+
+    span {
+        margin-top: 2rem;
+    }
+
+}
+
+.members {
+    border-radius: 15px;
+    text-align: center;
+    margin: -5rem 1rem 5rem 1rem;
+    background: darken($table-color, 3);
+
+    h1 {
+        margin: 0;
+        padding: 2rem;
+    }
+
+    .row {
+        margin: 0 1rem 0 1rem;
+
+        @media #{$small-and-down} {
+            background: $table-color;
+            margin-bottom: 1.2rem;
+
+            &:first-child {
+                background: none;
+            }
+        }
+
+        .col {
+            margin-top: 1rem;
+            text-align: left;
+            background-color: $table-color;
+            font-size: $h5-fontsize * .8;
+
+            p {
+                margin: 0;
+                padding: 1.5rem;
+
+                &:first-child {
+                    font-size: $h5-fontsize;
+                }
+            }
+
+        }
+    }
+
+
+}

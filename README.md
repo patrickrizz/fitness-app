@@ -19,6 +19,9 @@ Order from start to finish:
         - Goal 1 - Weightloss, Gain Muscle, Lean out
         - Goal 2 - Endurance, Strength, Speed, Flexability
         - Goal 3 - Confidence, Mentality, Discipline, Motivation
+        - Add body weight, fat%
+        - Do you have measurments? 
+            - if so show measument inputs
 
     - If xp level is adept + (Optional)
         - Select Strategy 

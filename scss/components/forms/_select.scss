@@ -75,6 +75,7 @@ select {
     display: block;
     user-select:none;
     z-index: 1;
+    color: $input-border-color;
   }
 
   .caret {
@@ -121,7 +122,7 @@ select:disabled {
 .select-dropdown li.disabled,
 .select-dropdown li.disabled > span,
 .select-dropdown li.optgroup {
-  color: $select-disabled-color;
+  color: $input-disabled-color;
   background-color: transparent;
 }
 
