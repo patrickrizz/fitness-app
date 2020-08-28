@@ -3,13 +3,14 @@ const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
 
 class UserRegisterService {
-    constructor(req, res) {
+    constructor(req, res, profile) {
         this._req = req
         this._res = res
         this._uuid = uuidv4()
+        this._profile = profile
     }
 
-    registerUser() {
+    registerUserLocal() {
         const { email, password, password2, name } = this._req.body
         let errors = []
 
@@ -92,6 +93,32 @@ class UserRegisterService {
                 })
             })
         }
+    }
+
+    registerUserGoogle() {
+        User.findOrCreate({
+            where: {
+                id: this._profile.id,
+                google_id: this._profile.id,
+                email: this._profile.emails[0].value,
+                name: this._profile.displayName
+            }
+        })
+        Experience.findOrCreate({
+            where: { user_id: this._profile.id }
+        })
+        Goal.findOrCreate({
+            where: { user_id: this._profile.id }
+        })
+        Strategy.findOrCreate({
+            where: { user_id: this._profile.id }
+        })
+        UserStats.findOrCreate({
+            where: { user_id: this._profile.id }
+        })
+        Role.findOrCreate({
+            where: { user_id: this._profile.id, role: 'member' }
+        })
     }
 }
 

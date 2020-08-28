@@ -18,7 +18,7 @@ router.get('/sign-up', (req, res) => {
 })
 
 router.post('/sign-up', async (req, res) => {
-    await new UserRegisterService(req, res).registerUser()
+    await new UserRegisterService(req, res).registerUserLocal()
     await res.redirect('/')
 })
 
