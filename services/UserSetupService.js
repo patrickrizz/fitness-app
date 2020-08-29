@@ -8,7 +8,7 @@ class UserSetupService {
 
     userSetup() {
         let set_up = true
-        let { xp, goals, strategy } = this.req.body
+        let { xp_level, goals, strategy } = this.req.body
 
         // User.findOne({
         //     where: { id: this.id },

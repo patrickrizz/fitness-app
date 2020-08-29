@@ -1,0 +1,54 @@
+version: "3.4"
+
+x-common-variables: &common-variables
+    #SERVER
+    NODE_ENV: 
+    PORT: 3000
+    SESSION_SECRET: spongebob
+    SESSION_SECRET_2: patrick
+    #DB LOGIN
+    DB: fitness
+    DB_HOST: mysql
+    DB_USER: app
+    DB_PASSWORD: password
+    # Login
+    GOOGLE_CLIENT_ID: 1015680144613-8452u8s6uo1cr8jvekb9hrd0fi2duo2o.apps.googleusercontent.com
+    GOOGLE_CLIENT_SECRET: 7MmgxXCistfc9IprxPY24nEN
+    GOOGLE_CALLBACK: http://localhost/auth/google/callback
+
+services:
+    mysql:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        ports: 
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: fitness
+            MYSQL_USER: app
+            MYSQL_PASSWORD: password
+    phpmyadmin:
+        depends_on:
+            - mysql
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: mysql
+        links:
+            - mysql:mysql
+        ports:
+            - 8080:80
+        restart: always
+    node:
+        container_name: fitnessapp
+        restart: always
+        depends_on: 
+            - mysql
+        build: .
+        environment: 
+            <<: *common-variables
+            MYSQL_HOST_IP: mysql
+        ports:
+            - 80:3000
+        links: 
+            - mysql
