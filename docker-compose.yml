@@ -8,6 +8,8 @@ x-common-variables: &common-variables
     SESSION_SECRET_2: patrick
     #DB LOGIN
     DB_HOST: mysql
+    DB: fitness
+    DB_HOST: 68.183.129.142
     DB_USER: app
     DB_PASSWORD: password
     # Login
@@ -46,5 +48,3 @@ services:
             <<: *common-variables
         ports:
             - 80:3000
-        links: 
-            - mysql
