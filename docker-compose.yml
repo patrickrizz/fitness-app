@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+    node:
+        container_name: fitnessapp
+        restart: always
+        build: .
+        env_file: .env
+        ports:
+            - 80:3000
