@@ -23,7 +23,7 @@ jobs:
             cd /var/www/fitness-app/ # navigate into the folder
             git pull
       - run: docker rmi fitness-app -f
-      - run: docker-composer up -d
+      - run: docker-compose up -d
 
 #     needs: deploy
 #     runs-on: ubuntu-latest
