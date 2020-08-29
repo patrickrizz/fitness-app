@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
     node:
-        container_name: fitnessapp
+        container_name: fitness-app
         restart: always
         build: .
         env_file: .env

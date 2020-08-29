@@ -19,8 +19,10 @@ jobs:
           #   mkdir -p /var/www/fitness-app/releases/$KEY
           #   cd /var/www/fitness-app/releases/$KEY # navigate into the folder
           #   git clone https://github.com/patrickrizz/fitness-app.git . &> /dev/null
-          script: |
-            /var/www/fitness-app/scripts/deploy.sh
+          script: 
+            cd /var/www/finess-app
+            chmod +x ./scripts/deploy.sh|
+            .scripts/deploy.sh
 
 #     needs: deploy
 #     runs-on: ubuntu-latest
