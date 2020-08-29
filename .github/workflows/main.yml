@@ -22,8 +22,7 @@ jobs:
           script: |
             cd /var/www/fitness-app/ # navigate into the folder
             git pull
-      - run: npm i
-      - run: npx sequelize-cli db:migrate
+      - run: docker rmi fitness-app -f
       - run: docker-composer up -d
 
 #     needs: deploy
