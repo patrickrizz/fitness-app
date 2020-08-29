@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "npx sequelize-cli db:migrate & jasmine",
-    "start": "bash scripts/rundb.sh & npx sequelize-cli db:migrate & nodemon ./bin/www",
+    "production": "bash scripts/rundb.sh & npx sequelize-cli db:migrate & nodemon ./bin/www",
+    "start": "npx sequelize-cli db:migrate & nodemon ./bin/www",
     "startdb": "bash scripts/rundb.sh",
     "secure": "npm audit & snyk test & snyk wizard & snyk protect",
     "db": "bash scripts/sequelize.sh"
