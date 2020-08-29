@@ -1,0 +1,45 @@
+name: Deploy application
+ 
+on:
+  push:
+    branches: [ master ]
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy NodeJS app
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{secrets.SSH_HOST}}
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USER }}
+          script: |
+            KEY=$(date +%Y%m%dT%H%M)
+            mkdir -p /var/www/disaster/releases/$KEY
+            cd /var/www/fitness-app/releases/$KEY # navigate into the folder
+            git clone https://github.com/patrickrizz/fitness-app.git . &> /dev/null
+      - run: npm i
+      - run: npx sequelize-cli db:migrate
+        env: 
+            NODE_ENV: production
+            SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+            SESSION_SECRET_2: ${{ secrets.SESSION_SECRET_2 }}
+            DB: ${{ secrets.DB }}
+            DB_HOST: ${{ secrets.DB_HOST }}
+            DB_USER: ${{ secrets.DB_USER}}
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+            GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+            GOOGLE_CALLBACK: http://localhost/auth/google/callback
+#   notify:
+#     needs: deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Discord notification
+#         env:
+#           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+#           DISCORD_USERNAME: "Github"
+#         uses: Ilshidur/action-discord@master
+#         with:
+#           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
