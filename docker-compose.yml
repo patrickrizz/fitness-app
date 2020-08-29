@@ -1,22 +1,5 @@
 version: "3.4"
 
-x-common-variables: &common-variables
-    #SERVER
-    NODE_ENV: production
-    PORT: 3000
-    SESSION_SECRET: spongebob
-    SESSION_SECRET_2: patrick
-    #DB LOGIN
-    DB_HOST: mysql
-    DB: fitness
-    DB_HOST: 68.183.129.142
-    DB_USER: app
-    DB_PASSWORD: password
-    # Login
-    GOOGLE_CLIENT_ID: 1015680144613-8452u8s6uo1cr8jvekb9hrd0fi2duo2o.apps.googleusercontent.com
-    GOOGLE_CLIENT_SECRET: 7MmgxXCistfc9IprxPY24nEN
-    GOOGLE_CALLBACK: http://localhost/auth/google/callback
-
 services:
     # mysql:
     #     image: mysql
