@@ -21,7 +21,7 @@ jobs:
           #   git clone https://github.com/patrickrizz/fitness-app.git . &> /dev/null
           script: 
             cd /var/www/fitness-app
-            chmod +x ./scripts/deploy.sh|
+            chmod +x ./scripts/deploy.sh
             .scripts/deploy.sh
 
 #     needs: deploy
