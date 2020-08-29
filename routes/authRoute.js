@@ -12,7 +12,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 // Login
 router.post('/login', async (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/admin',
         failureRedirect: '/',
         failureFlash: true,
     })(req, res, next)

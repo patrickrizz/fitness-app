@@ -23,7 +23,7 @@ jobs:
             cd /var/www/fitness-app/ # navigate into the folder
             git pull
       - run: npm i
-      - run: npx sequelize db:migrate
+      - run: npx sequelize-cli db:migrate
       - run: docker-composer up -d
 
 #     needs: deploy
