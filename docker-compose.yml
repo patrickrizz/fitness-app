@@ -8,3 +8,31 @@ services:
         env_file: .env
         ports:
             - 3000:3000
+        networks:
+            - app-network
+
+    webserver: 
+        image: nginx
+        container_name: fitness-webserver
+        volumes:
+            - web-root:/var/www/html
+            - ./nginx-conf:/etc/nginx/conf.d
+        ports:
+            - 80:80
+            - 443:443
+        depends_on:
+            - node
+        networks:
+            - app-network
+
+#Docker Volumes
+volumes:
+    web-root:
+        driver: local
+    dbdata:
+        driver: local
+
+#Docker Networks
+networks:
+    app-network:
+        driver: bridge
