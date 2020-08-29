@@ -21,7 +21,7 @@ jobs:
           #   git clone https://github.com/patrickrizz/fitness-app.git . &> /dev/null
           script: 
             cd /var/www/fitness-app/ &
-            ./deploy.sh
+            ./scripts/deploy.sh
 
 #     needs: deploy
 #     runs-on: ubuntu-latest
