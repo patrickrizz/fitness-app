@@ -6,16 +6,12 @@ module.exports = {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB,
-    host: process.env.DB_HOST,
     dialect: "mysql"
   },
   test: {
-    username: "root",
-    password: null,
-    database: "test",
-    host: "localhost",
-    dialect: "mysql"
-  },
+    dialect: "mysql",
+    storage: ":memory"
+},
   production: {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
