@@ -27,7 +27,6 @@ services:
         container_name: fitnessapp
         restart: always
         build: .
-        environment: 
-            <<: *common-variables
+        env_file: .env
         ports:
             - 80:3000
