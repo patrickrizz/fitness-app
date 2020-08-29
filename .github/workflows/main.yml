@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           script: |
             KEY=$(date +%Y%m%dT%H%M)
-            mkdir -p /var/www/disaster/releases/$KEY
+            mkdir -p /var/www/fitness-app/releases/$KEY
             cd /var/www/fitness-app/releases/$KEY # navigate into the folder
             git clone https://github.com/patrickrizz/fitness-app.git . &> /dev/null
       - run: npm i
