@@ -20,8 +20,8 @@ jobs:
           #   cd /var/www/fitness-app/releases/$KEY # navigate into the folder
           #   git clone https://github.com/patrickrizz/fitness-app.git . &> /dev/null
           script: 
-            cd /var/www/fitness-app
-            chmod +x ./scripts/deploy.sh
+            cd /var/www/fitness-app &
+            chmod +x ./scripts/deploy.sh &
             .scripts/deploy.sh
 
 #     needs: deploy
