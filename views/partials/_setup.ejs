@@ -35,61 +35,49 @@
             </div>
             <%} %>
             <form id=sign-up-form class="col s12" action="/set-up" method="post">
+                <p>Fill out the form below and let's get started!</p>
                 <div class="row">
-                    <div class="input-field col s8 offset-s2">
+                    <div class="input-field col s12 m6">
+                        <input id="weight" type="text" class="validate" name="weight">
+                        <label for="weight">Weight (Optional)</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select name="objectives">
+                            <option value="" disabled selected>*Choose an objective, or more...</option>
+                            <option value="Weightloss">Weightloss</option>
+                            <option value="Gain Weight">Gain Weight</option>
+                            <option value="Gain muscle mass">Gain muscle mass</option>
+                            <option value="Strength training">Strength training</option>
+                            <option value="Bodybuilding">Bodybuilding</option>
+                            <option value="Lean out">Lean out</option>
+                            <option value="Endurance">Endurance</option>
+                            <option value="Speed">Speed</option>
+                            <option value="Flexability">Flexability</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
                         <select name="xp_level">
-                            <option value="" disabled selected>Choose your experience level:</option>
+                            <option value="" disabled selected>*Choose your experience level...</option>
                             <option value="Neophyte">Neophyte: Never even thought about fitness until now</option>
-                            <option value="Apprentice">Apprentice: Some Experience, Fitness is a hobby right now</option>
+                            <option value="Apprentice">Apprentice: Some Experience, Fitness is a hobby right now
+                            </option>
                             <option value="Expert">Expert: Proficient, fitness is a lifestyle</option>
                             <option value="Master">Master: Proffessional athlete</option>
                         </select>
-                        <label>Experience</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select name="strategy">
+                            <option value="" disabled selected>Choose a strategy to start with...(optional)</option>
+                            <option value="FST-7">FST-7</option>
+                            <option value="GVT">German Volume Training</option>
+                            <option value="Full Body">Full Body</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
-                    <p>Select your goals:</p>
-                    <p class="col s3">
-                        <label>
-                            <input type="checkbox" name='goals[]' />
-                            <span>Weightloss</span>
-                        </label>
-                    </p>
-                    <p class="col s3">
-                        <label>
-                            <input type="checkbox" name='goals[]' />
-                            <span>Gain Muscle Mass</span>
-                        </label>
-                    </p>
-                    <p class="col s3">
-                        <label>
-                            <input type="checkbox" name='goals[]' />
-                            <span>Lean Out</span>
-                        </label>
-                    </p>
-                    <p class="col s3">
-                        <label>
-                            <input type="checkbox" name='goals[]' />
-                            <span>Endurance</span>
-                        </label>
-                    </p>
-                </div>
-                <div class="row">
-                    <p>Select your strategy: (optional)</p>
-                    <div class="row">
-                        <div class="input-field col s8 offset-s2">
-                            <select name="strategy">
-                                <option value="" disabled selected>Choose a strategy to start with:</option>
-                                <option value="FST-7">FST-7</option>
-                                <option value="GVT">German Volume Training</option>
-                                <option value="Full Body">Full Body</option>
-                            </select>
-                            <label>Strategy</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col m6 offset-m3">
+                    <div class="col s12 m6 offset-m3">
                         <button class="btn btn-block" type="submit">Submit</button>
                     </div>
                 </div>

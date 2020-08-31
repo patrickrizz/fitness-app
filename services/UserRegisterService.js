@@ -1,4 +1,4 @@
-const { User, ExperienceLevel, Goal, Strategy, UserStats, Role } = require('../models')
+const { User, ExperienceLevel, Objective, Strategy, UserStats, Role } = require('../models')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
 
@@ -77,7 +77,7 @@ class UserRegisterService {
                 ExperienceLevel.findOrCreate({
                     where: { user_id: this._uuid }
                 })
-                Goal.findOrCreate({
+                Objective.findOrCreate({
                     where: { user_id: this._uuid }
                 })
                 Strategy.findOrCreate({

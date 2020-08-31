@@ -12,7 +12,6 @@ services:
         networks:
             - app-network
 
-
 #Docker Volumes
 volumes:
     dbdata:

@@ -1,4 +1,4 @@
-const { User, ExperienceLevel, Goal, Strategy } = require('../models')
+const { User, ExperienceLevel, Objectives, Strategy, UserStats } = require('../models')
 
 class UserSetupService {
     constructor(req) {
@@ -8,7 +8,7 @@ class UserSetupService {
 
     userSetup() {
         let set_up = true
-        let { xp_level, goals, strategy } = this.req.body
+        let { weight, xp_level, objectives, strategy } = this.req.body
 
         // User.findOne({
         //     where: { id: this.id },
@@ -26,6 +26,13 @@ class UserSetupService {
             setup.update({ set_up })
         })
 
+        // Add weight to db
+        UserStats.findOne({
+            where: { user_id: this.id }
+        }).then(setup => {
+            setup.update({ weight })
+        })
+
         // Adds xp level to db
         ExperienceLevel.findOne({
             where: { user_id: this.id }
@@ -34,10 +41,10 @@ class UserSetupService {
         })
 
         // Adds goals to db
-        Goal.findOne({
+        Objectives.findOne({
             where: { user_id: this.id }
         }).then(setup => {
-            setup.update({ goals })
+            setup.update({ objectives })
         })
 
         // Adds strategy to db
