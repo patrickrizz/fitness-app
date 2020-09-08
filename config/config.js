@@ -20,7 +20,7 @@ module.exports = {
     database: process.env.DB,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: "mysql",
+    dialect: "postgres",
     // dialectOptions: {
     //   ssl: {
     //     ca: fs.readFileSync(__dirname + '/mysql-ca.crt')
