@@ -17,6 +17,9 @@ module.exports = {
       strategy_description: {
         type: Sequelize.TEXT
       },
+      strategy_map: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

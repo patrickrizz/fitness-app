@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   CreateStrategy.init({
     strategy: DataTypes.STRING,
     xp_level: DataTypes.STRING,
-    strategy_description: DataTypes.TEXT
+    strategy_description: DataTypes.TEXT,
+    strategy_map: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'CreateStrategy',

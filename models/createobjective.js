@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   CreateObjective.init({
-    goals: DataTypes.STRING,
-    goals_description: DataTypes.TEXT
+    objective: DataTypes.STRING,
+    objective_description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'CreateObjective',

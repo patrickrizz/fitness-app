@@ -1,26 +1,26 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('CreateExcersices', {
+    await queryInterface.createTable('CreateExercises', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      excersice: {
+      exercise: {
         type: Sequelize.STRING
       },
       muscle: {
         type: Sequelize.STRING
       },
-      type_of_excersice: {
+      type_of_exercise: {
         type: Sequelize.STRING
       },
       equipment: {
         type: Sequelize.BOOLEAN
       },
-      excersice_description: {
+      exercise_description: {
         type: Sequelize.TEXT
       },
       createdAt: {
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('CreateExcersices');
+    await queryInterface.dropTable('CreateExercises');
   }
 };

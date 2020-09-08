@@ -39,6 +39,14 @@ Order from start to finish:
 3. Behind the scence logic
     - input expereince level, stats/goals, xp level
     - pull input data from db and do some logic that creates custome workouts
+        - If strategy, pull strategy
+            - if 
+
+
+
+
+
+
         - Pull strategy
         - function createFst7
             switch xpLevel 

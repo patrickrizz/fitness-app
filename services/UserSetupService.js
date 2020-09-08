@@ -1,4 +1,4 @@
-const { User, ExperienceLevel, Objectives, Strategy, UserStats } = require('../models')
+const { User, ExperienceLevel, Objective, Strategy, UserStats } = require('../models')
 
 class UserSetupService {
     constructor(req) {
@@ -41,7 +41,7 @@ class UserSetupService {
         })
 
         // Adds goals to db
-        Objectives.findOne({
+        Objective.findOne({
             where: { user_id: this.id }
         }).then(setup => {
             setup.update({ objectives })

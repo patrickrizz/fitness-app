@@ -1,0 +1,85 @@
+<%- include('partials/_head') %>
+<%- include('partials/_header') %>
+<main>
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Create <%= title %></span>
+                <div class="row">
+                    <%- include('../partials/_validation') %>
+                    <form class="col s12" action="/admin/create/create_exercise" method="post">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input id="exercise" type="text" class="validate" name="exercise">
+                                <label for="exercise">Exercise</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="muscle" type="text" class="validate" name="muscle">
+                                <label for="muscle">Muscle</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <select name="type_of_exercise">
+                                    <option value="" disabled selected>Type of exercise</option>
+                                    <option value="compound">Compound</option>
+                                    <option value="isolation">Isolation</option>
+                                    <option value="supplemental">Supplemental</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <textarea id="exercise_description" class="materialize-textarea"
+                                    name="exercise_description"></textarea>
+                                <label for="exercise_description">Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col m3">
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" name="equipment">
+                                        <span class="lever"></span>
+                                        Equipment required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <button class="btn-large btn-floating" type="submit"><i
+                                        class="material-icons">add</i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Muscle</th>
+                            <th>Type</th>
+                            <th>Equipment</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(i = 0; i < exercise.length; i++) {%>
+                        <tr>
+                            <td><%= exercise[i].exercise %></td>
+                            <td><%= exercise[i].muscle %></td>
+                            <td><%= exercise[i].type_of_exercise %></td>
+                            <td><%= exercise[i].equipment %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('partials/_footer') %>

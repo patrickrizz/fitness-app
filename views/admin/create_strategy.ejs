@@ -1,0 +1,332 @@
+<%- include('partials/_head') %>
+<%- include('partials/_header') %>
+<main>
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Create <%= title %></span>
+                <div class="row">
+                    <%- include('../partials/_validation') %>
+                    <form class="col s12" action="/admin/create/create_strategy" method="post">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input type="text" class="validate" name="strategy">
+                                <label>Strategy</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <textarea class="materialize-textarea" name="strategy_description"></textarea>
+                                <label>Strategy Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="type_of_exercise">
+                                    <option value="" disabled selected>Experience Level Required</option>
+                                    <option value="compound">Compound</option>
+                                    <option value="isolation">Isolation</option>
+                                    <option value="supplemental">Supplemental</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <ul id="item-list" class="collection"></ul>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <textarea disabled id="item-json" type="json" class="" name="strategy_map"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <button class="btn-large btn-floating" type="submit"><i
+                                        class="material-icons">add</i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Strategy Map</span>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <input type="number" placeholder="Sets" id="item-sets">
+                            <label>Sets</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <input type="number" placeholder="Repatitions" id="item-reps">
+                            <label>Repatitions</label>
+                        </div>
+                        <button class="add-btn btn blue darken-3"><i class="fa fa-plus"></i>Add
+                            Exercise</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Experience Level</th>
+                            <th>Description</th>
+                            <th>Map</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(i = 0; i < strategy.length; i++) {%>
+                        <tr>
+                            <td><%= strategy[i].strategy %></td>
+                            <td><%= strategy[i].xp_level %></td>
+                            <td><%= strategy[i].strategy_description %></td>
+                            <td><%= strategy[i].strategy_map %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+
+    // Item Controller
+    const ItemCtrl = (function () {
+        // Item Constructor
+        const Item = function (id, sets, reps) {
+            this.id = id;
+            this.sets = sets;
+            this.reps = reps;
+        }
+
+        // Data Structure / State
+        const data = {
+            items: [],
+            currentItem: null
+        }
+
+        // Public methods
+        return {
+            getItems: function () {
+                return data.items;
+            },
+            addItem: function (sets, reps) {
+                let ID;
+                // Create ID
+                if (data.items.length > 0) {
+                    ID = data.items[data.items.length - 1].id + 1;
+                } else {
+                    ID = 1;
+                }
+
+                // reps to number
+                reps = parseInt(reps);
+                sets = parseInt(sets);
+
+                // Create new item
+                newItem = new Item(ID, sets, reps);
+
+                // Add to items array
+                data.items.push(newItem);
+
+                return newItem;
+            },
+            getItemById: function (id) {
+                let found = null;
+                // Loop through items
+                data.items.forEach(function (item) {
+                    if (item.id === id) {
+                        found = item;
+                    }
+                });
+                return found;
+            },
+            updateItem: function (sets, reps) {
+                // reps to number
+                reps = parseInt(reps);
+                sets = parseInt(sets);
+
+                let found = null;
+
+                data.items.forEach(function (item) {
+                    if (item.id === data.currentItem.id) {
+                        item.sets = sets;
+                        item.reps = reps;
+                        found = item;
+                    }
+                });
+                return found;
+            },
+            deleteItem: function (id) {
+                // Get ids
+                const ids = data.items.map(function (item) {
+                    return item.id;
+                });
+
+                // Get index
+                const index = ids.indexOf(id);
+
+                // Remove item
+                data.items.splice(index, 1);
+            },
+            setCurrentItem: function (item) {
+                data.currentItem = item;
+            },
+            getCurrentItem: function () {
+                return data.currentItem;
+            },
+            logData: function () {
+                return data;
+            }
+        }
+    })();
+
+
+
+    // UI Controller
+    const UICtrl = (function () {
+        const UISelectors = {
+            itemList: '#item-list',
+            listItems: '#item-list li',
+            itemJson: '#item-json',
+            addBtn: '.add-btn',
+            deleteBtn: '.delete-btn',
+            itemSetsInput: '#item-sets',
+            itemRepsInput: '#item-reps'
+        }
+
+        // Public methods
+        return {
+            populateItemList: function (items) {
+                let html = '';
+                let json = JSON.stringify(items)
+
+                items.forEach(function (item) {
+                    html +=
+                        `<li class="collection-item" id="item-${item.id}">
+                        Exercise ${item.id}: ${item.sets} x ${item.reps} reps
+                        <a href="#" class="secondary-content">
+                            <i class="delete-btn fa fa-pencil"></i>
+                        </a>
+                    </li>`;
+                });
+
+                // Insert list items
+                document.querySelector(UISelectors.itemList).innerHTML = html;
+                document.querySelector(UISelectors.itemJson).value = json;
+            },
+            getItemInput: function () {
+                return {
+                    sets: document.querySelector(UISelectors.itemSetsInput).value,
+                    reps: document.querySelector(UISelectors.itemRepsInput).value
+                }
+            },
+            addListItem: function (item) {
+                // Show the list
+                document.querySelector(UISelectors.itemList).style.display = 'block';
+                // Create li element
+                const li = document.createElement('li');
+                // Add class
+                li.className = 'collection-item';
+                // Add ID
+                li.id = `item-${item.id}`;
+                // Add HTML
+                li.innerHTML =
+                    `Exercise ${item.sets}: x ${item.reps} reps
+                <a href="#" class="secondary-content">
+                    <i class=" fa fa-pencil"></i>
+                </a>`;
+                // Insert item
+                document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
+                item = ItemCtrl.getItems()
+                item = JSON.stringify(item)
+                document.querySelector(UISelectors.itemJson).value = item;
+            },
+            clearInput: function () {
+                document.querySelector(UISelectors.itemSetsInput).value = '';
+                document.querySelector(UISelectors.itemRepsInput).value = '';
+            },
+            hideList: function () {
+                document.querySelector(UISelectors.itemList).style.display = 'none';
+            },
+            getSelectors: function () {
+                return UISelectors;
+            }
+        }
+    })();
+
+
+
+    // App Controller
+    const App = (function (ItemCtrl, UICtrl) {
+        // Load event listeners
+        const loadEventListeners = function () {
+            // Get UI selectors
+            const UISelectors = UICtrl.getSelectors();
+
+            // Add item event
+            document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
+
+            // Disable submit on enter
+            document.addEventListener('keypress', function (e) {
+                if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+        }
+
+        // Add item submit
+        const itemAddSubmit = function (e) {
+            // Get form input from UI Controller
+            const input = UICtrl.getItemInput();
+
+            // Check for sets and reps input
+            if (input.sets !== '' && input.reps !== '') {
+                // Add item
+                const newItem = ItemCtrl.addItem(input.sets, input.reps);
+
+                // Add item to UI list
+                UICtrl.addListItem(newItem);
+
+
+
+                // Clear fields
+                UICtrl.clearInput();
+            }
+
+            e.preventDefault();
+        }
+
+        // Public methods
+        return {
+            init: function () {
+
+                // Fetch items from data structure
+                const items = ItemCtrl.getItems();
+
+                // Check if any items
+                if (items.length === 0) {
+                    UICtrl.hideList();
+                } else {
+                    // Populate list with items
+                    UICtrl.populateItemList(items);
+                }
+
+                // Load event listeners
+                loadEventListeners();
+            }
+        }
+
+    })(ItemCtrl, UICtrl);
+
+    // Initialize App
+    App.init();
+</script>
+<%- include('partials/_footer') %>
