@@ -55,7 +55,7 @@ router.get('/create_strategy', async (req, res) => {
 
 // Create Strategy Post
 router.post('/create_strategy', async (req, res) => {
-    await new AdminCreateService(req, res).createRole()    
+    await new AdminCreateService(req, res).createStrategy()    
 })
 
 module.exports = router
