@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       exercise: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       muscle: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       type_of_exercise: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       equipment: {
         type: Sequelize.BOOLEAN

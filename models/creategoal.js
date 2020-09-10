@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class CreateStrategy extends Model {
+  class CreateGoal extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,15 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  CreateStrategy.init({
-    strategy: DataTypes.STRING,
-    xp_level: DataTypes.STRING,
+  CreateGoal.init({
     goal: DataTypes.STRING,
-    strategy_description: DataTypes.TEXT,
-    strategy_map: DataTypes.TEXT
+    goal_description: DataTypes.TEXT
   }, {
     sequelize,
-    modelName: 'CreateStrategy',
+    modelName: 'CreateGoal',
   });
-  return CreateStrategy;
+  return CreateGoal;
 };

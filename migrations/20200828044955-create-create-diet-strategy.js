@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       diet_strategy: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       diet_strategy_description: {
         type: Sequelize.TEXT

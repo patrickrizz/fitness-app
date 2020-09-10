@@ -3,7 +3,7 @@
     <section id=sign-up class="container">
         <div class="row center">
             <h1>Ground Zero</h1>
-            <%- include('/_validation') %>
+            <%- include('partials/_validation') %>
             <form id=sign-up-form class="col s12" action="/sign-up" method="post">
                 <div class="row">
                     <div class="input-field col s12">
@@ -40,8 +40,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12 m4">
-                        <a href="/auth/google"><img class="responsive-img" src="./images/google.png"
-                                alt="google sign-in"></i></a>
+                        <a class="transparent" href="/auth/google"><img class="responsive-img" src="./images/google.png" alt="google sign-in"></a>
                     </div>
                 </div>
             </form>

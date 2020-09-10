@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       objective: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       objective_description: {
         type: Sequelize.TEXT

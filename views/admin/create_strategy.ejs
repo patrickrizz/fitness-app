@@ -19,12 +19,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s12 m6">
                                 <select name="xp_level">
                                     <option value="" disabled selected>Experience Level Required</option>
-                                    <option value="compound">Compound</option>
-                                    <option value="isolation">Isolation</option>
-                                    <option value="supplemental">Supplemental</option>
+                                    <% for(i = 0; i < experience.length; i++) {%>
+                                    <option value="<%= experience[i].xp_level %>"><%= experience[i].xp_level %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <select name="goal">
+                                    <option value="" disabled selected>Goal of Strategy</option>
+                                    <% for(i = 0; i < goal.length; i++) {%>
+                                    <option value="<%= goal[i].goal %>"><%= goal[i].goal %></option>
+                                    <% } %>
                                 </select>
                             </div>
                         </div>

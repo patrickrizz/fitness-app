@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       xp_level: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       xp_description: {
         type: Sequelize.TEXT

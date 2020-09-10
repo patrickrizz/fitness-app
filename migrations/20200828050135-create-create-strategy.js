@@ -9,16 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       strategy: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       xp_level: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       strategy_description: {
         type: Sequelize.TEXT
       },
       strategy_map: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

@@ -25,6 +25,17 @@ router.post('/create_experience', async (req, res) => {
     await new AdminCreateService(req, res).createExperienceLevel()    
 })
 
+// Create Goal
+router.get('/create_goal', async (req, res) => {
+    let params = await new AdminCreateRouteService().params()
+    res.render('admin/create_settings', { title: 'Goals', ...params })
+})
+
+// Create Goal Post
+router.post('/create_goal', async (req, res) => {
+    await new AdminCreateService(req, res).createGoal()    
+})
+
 // Create Objective
 router.get('/create_objective', async (req, res) => {
     let params = await new AdminCreateRouteService().params()
