@@ -28,10 +28,10 @@
                                 </select>
                             </div>
                             <div class="input-field col s12 m6">
-                                <select name="goal">
-                                    <option value="" disabled selected>Goal of Strategy</option>
-                                    <% for(i = 0; i < goal.length; i++) {%>
-                                    <option value="<%= goal[i].goal %>"><%= goal[i].goal %></option>
+                                <select name="objective">
+                                    <option value="" disabled selected>Objecitve of Strategy</option>
+                                    <% for(i = 0; i < objective.length; i++) {%>
+                                    <option value="<%= objective[i].objective %>"><%= objective[i].objective %></option>
                                     <% } %>
                                 </select>
                             </div>
@@ -80,6 +80,7 @@
                         <tr>
                             <th>Strategy</th>
                             <th>Experience Level</th>
+                            <th>Objective</th>
                             <th>Description</th>
                             <th>Map</th>
                             <th></th>
@@ -91,6 +92,7 @@
                         <tr>
                             <td><%= strategy[i].strategy %></td>
                             <td><%= strategy[i].xp_level %></td>
+                            <td><%= strategy[i].objective %></td>
                             <td><%= strategy[i].strategy_description %></td>
                             <td><%= strategy[i].strategy_map %></td>
                         </tr>

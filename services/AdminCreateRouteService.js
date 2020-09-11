@@ -12,15 +12,13 @@ class AdminCreateRouteService {
         let objective = await this._content.objectiveData
         let role = await this._content.roleData
         let strategy = await this._content.strategyData
-        let goal = await this._content.goalData
 
         return {
             exercise,
             experience,
             objective,
             role,
-            strategy,
-            goal
+            strategy
         }
     }
 }

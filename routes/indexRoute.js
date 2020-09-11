@@ -10,6 +10,10 @@ router.get('/', async (req, res) => {
     let id
     (!req.user) ? email = null : id = req.user.id
     let params = await new IndexRouteService(req, id).params()
+
+    const CreateWorkoutForUserService = require('../services/CreateWorkoutForUserService')
+    new CreateWorkoutForUserService(id).createWorkout()
+
     res.render('index', { ...params })
 })
 

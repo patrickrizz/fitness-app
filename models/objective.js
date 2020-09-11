@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Objective.init({
     user_id: DataTypes.STRING,
-    objectives: DataTypes.STRING
+    objective: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Objective',

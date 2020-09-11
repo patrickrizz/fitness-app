@@ -8,21 +8,21 @@
                 <div class="row">
                     <%- include('../partials/_validation') %>
                     <form class="col s12"
-                        action="/admin/create/<% if(title == 'Experience Levels') { %>create_experience<% } else if(title == 'Objectives') { %>create_objective<% } else if(title == 'Roles') { %>create_role<% } else if(title == 'Goals') { %>create_goal<% }%>"
+                        action="/admin/create/<% if(title == 'Experience Levels') { %>create_experience<% } else if(title == 'Objectives') { %>create_objective<% } else if(title == 'Roles') { %>create_role<% }%>"
                         method="post">
                         <div class="row">
                             <div class="input-field col s12 m5">
                                 <input type="text" class="validate"
-                                    name="<% if(title == 'Experience Levels') { %>xp_level<% } else if(title == 'Objectives') { %>objective<% } else if(title == 'Roles') { %>role<% } else if(title == 'Goals') { %>goal<% }%>">
+                                    name="<% if(title == 'Experience Levels') { %>xp_level<% } else if(title == 'Objectives') { %>objective<% } else if(title == 'Roles') { %>role<% }%>">
                                 <label><% if(title == 'Experience Levels') { %>Experience
-                                    Level<% } else if(title == 'Objectives') { %>Objective<% } else if(title == 'Roles') { %>Role<% } else if(title == 'Goals') { %>Goal<% }%></label>
+                                    Level<% } else if(title == 'Objectives') { %>Objective<% } else if(title == 'Roles') { %>Role<% }%></label>
                             </div>
                             <div class="input-field col s12 m5">
                                 <textarea class="materialize-textarea"
-                                    name="<% if(title == 'Experience Levels') { %>xp_description<% } else if(title == 'Objectives') { %>objective_description<% } else if(title == 'Roles') { %>role_description<% } else if(title == 'Goals') { %>goal_description<% }%>"></textarea>
+                                    name="<% if(title == 'Experience Levels') { %>xp_description<% } else if(title == 'Objectives') { %>objective_description<% } else if(title == 'Roles') { %>role_description<% }%>"></textarea>
                                 <label><% if(title == 'Experience Levels') { %>Experience Level
                                     Description<% } else if(title == 'Objectives') { %>Objective
-                                    Description<% } else if(title == 'Roles') { %>Role Description<% } else if(title == 'Goals') { %>Goal Description<% }%></label>
+                                    Description<% } else if(title == 'Roles') { %>Role Description<% }%></label>
                             </div>
                             <div class="col s12 m2">
                                 <button class="btn-large btn-floating" type="submit"><i

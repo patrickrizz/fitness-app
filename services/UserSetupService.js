@@ -8,7 +8,7 @@ class UserSetupService {
 
     userSetup() {
         let set_up = true
-        let { weight, xp_level, objectives, strategy } = this.req.body
+        let { weight, xp_level, objective, strategy } = this.req.body
 
         // User.findOne({
         //     where: { id: this.id },
@@ -44,7 +44,7 @@ class UserSetupService {
         Objective.findOne({
             where: { user_id: this.id }
         }).then(setup => {
-            setup.update({ objectives })
+            setup.update({ objective })
         })
 
         // Adds strategy to db

@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      objectives: {
+      objective: {
         type: Sequelize.STRING,
         allowNull: false
       },

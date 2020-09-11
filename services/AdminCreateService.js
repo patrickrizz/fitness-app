@@ -68,36 +68,6 @@ class AdminCreate {
         }
     }
 
-    async createGoal() {
-        let { goal, goal_description } = this._req.body
-
-        // Validate xp doesn't exsist
-        let validate = await CreateGoal.findOne({
-            where: { goal }
-        })
-
-        if (!validate) {
-            // Add xp to db
-            CreateGoal.findOrCreate({
-                where: { goal, goal_description }
-            })
-
-            await this._req.flash(
-                'success_msg',
-                `${goal} goal created`
-            )
-
-            await this._res.redirect('/admin/create/create_goal')
-        } else {
-            // Push validation errors
-            let errors = []
-            let params = await new AdminCreateRouteService().params()
-
-            errors.push({ msg: `${validate.dataValues.goal} goal already exists` })
-            this._res.render('admin/create_settings', { errors, title: 'Goals', ...params })
-        }
-    }
-
     async createObjective() {
         let { objective, objective_description } = this._req.body
 
@@ -159,7 +129,7 @@ class AdminCreate {
     }
 
     async createStrategy() {
-        let { strategy, xp_level, goal, strategy_description, strategy_map} = this._req.body
+        let { strategy, xp_level, objective, strategy_description, strategy_map} = this._req.body
 
         // Validate xp doesn't exsist
         let validate = await CreateStrategy.findOne({
@@ -169,7 +139,7 @@ class AdminCreate {
         if (!validate) {
             // Add xp to db
             CreateStrategy.findOrCreate({
-                where: { strategy, xp_level, goal, strategy_description, strategy_map }
+                where: { strategy, xp_level, objective, strategy_description, strategy_map }
             })
 
             await this._req.flash(

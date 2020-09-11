@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
      User.hasOne(models.ExperienceLevel, {foreignKey: 'user_id'})
-     User.hasMany(models.Objective, {foreignKey: 'user_id'})
+     User.hasOne(models.Objective, {foreignKey: 'user_id'})
      User.hasOne(models.Strategy, {foreignKey: 'user_id'})
      User.hasOne(models.UserStats, {foreignKey: 'user_id'})
      User.hasOne(models.Role, {foreignKey: 'user_id'})

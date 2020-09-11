@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Strategy.init({
     user_id: DataTypes.STRING,
-    strategy: DataTypes.STRING,
-    xp_level: DataTypes.INTEGER
+    strategy: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Strategy',
