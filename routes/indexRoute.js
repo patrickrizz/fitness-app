@@ -9,6 +9,7 @@ const { ensureAuthenticated } = require('../lib/authentication')
 router.get('/', async (req, res) => {
     let id
     (!req.user) ? email = null : id = req.user.id
+    id = '105097979934155160948' //delete line when done so id is set by login id and not this id
     let params = await new IndexRouteService(req, id).params()
 
     const CreateWorkoutForUserService = require('../services/CreateWorkoutForUserService')
