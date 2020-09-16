@@ -47,20 +47,44 @@ class CreateWorkoutForUserService {
                                         muscleGroupsAmmount: 2
                                     },
                                     {
-                                        id: 2,
                                         muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 0
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 0
+                                    }
+                                ],
+                                [
+                                    {
+                                        id: 1,
+                                        muscleGroupsAmmount: 2
+                                    },
+                                    {
+                                        id: 2,
+                                        muscleGroupsAmmount: 0
                                     },
                                     {
                                         id: 3,
-                                        muscleGroupsAmmount: 1
+                                        muscleGroupsAmmount: 2
                                     },
                                     {
                                         id: 4,
-                                        muscleGroupsAmmount: 1
+                                        muscleGroupsAmmount: 0
                                     },
                                     {
                                         id: 5,
-                                        muscleGroupsAmmount: 1
+                                        muscleGroupsAmmount: 2
                                     },
                                     {
                                         id: 6,
@@ -101,7 +125,7 @@ class CreateWorkoutForUserService {
                         }
 
                         //select workout week based on rest day configuration
-                        let workoutSchedule = workout.nonConsecutiveRestDays
+                        let workoutSchedule = workout.consecutiveRestDays
 
                         //pick a random number to select a random workout schedule
                         let randomWeek = this._randomeize(workoutSchedule.length)
@@ -152,7 +176,7 @@ class CreateWorkoutForUserService {
                 for (let i = 0; i < exercises.length; i++) {
                     let exercise = await exercises[i].exercise
                     console.log(exercise)
-                    if(muscleGroupOne === workoutSchedule[i].muscleGroupOne) {
+                    if (muscleGroupOne === workoutSchedule[i].muscleGroupOne) {
                         workoutSchedule[i]['workout'] = exercise
                     }
                 }
