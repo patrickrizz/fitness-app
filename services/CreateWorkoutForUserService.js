@@ -1,6 +1,6 @@
 const Users = require('../lib/User')
+const Exercise = require('../lib/Exercise')
 const { CreateStrategy, Strategy } = require('../models')
-
 class CreateWorkoutForUserService {
     constructor(id) {
         this._user_id = id
@@ -44,31 +44,31 @@ class CreateWorkoutForUserService {
                                 [
                                     {
                                         id: 1,
-                                        baseNum: 2
+                                        muscleGroupsAmmount: 2
                                     },
                                     {
                                         id: 2,
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
                                         id: 3,
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
                                         id: 4,
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
                                         id: 5,
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
                                         id: 6,
-                                        baseNum: 0
+                                        muscleGroupsAmmount: 0
                                     },
                                     {
                                         id: 7,
-                                        baseNum: 0
+                                        muscleGroupsAmmount: 0
                                     }
                                 ]
                             ],
@@ -76,25 +76,25 @@ class CreateWorkoutForUserService {
                                 [
                                     {
                                         id: 1,
-                                        baseNum: 2
+                                        muscleGroupsAmmount: 2
                                     },
                                     {
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
-                                        baseNum: 0
+                                        muscleGroupsAmmount: 0
                                     },
                                     {
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
-                                        baseNum: 1
+                                        muscleGroupsAmmount: 1
                                     },
                                     {
-                                        baseNum: 0
+                                        muscleGroupsAmmount: 0
                                     }
                                 ]
                             ]
@@ -104,7 +104,7 @@ class CreateWorkoutForUserService {
                         let workoutSchedule = workout.nonConsecutiveRestDays
 
                         //pick a random number to select a random workout schedule
-                        let randomWeek = this._randomeizeWeekNum(workoutSchedule.length)
+                        let randomWeek = this._randomeize(workoutSchedule.length)
 
                         //put random number into array
                         workoutSchedule = workoutSchedule[randomWeek]
@@ -119,9 +119,9 @@ class CreateWorkoutForUserService {
                         workoutSchedule = this._addExercisesToMap(workoutSchedule)
 
                         //add exercise object to exercise map
-                        exerciseMap[i]['schedule'] = workoutSchedule
+                        exerciseMap[i]['schedule'] = await workoutSchedule
 
-                        console.log(exerciseMap[i].schedule[0])
+                        console.log(exerciseMap[i].schedule)
                         //randomly slect exercises based on muscle group and how many muscles per day determined already
                         return
 
@@ -140,14 +140,30 @@ class CreateWorkoutForUserService {
         }
     }
 
-    _addExercisesToMap(workoutSchedule) {
-        //example of how exercises will be put into excersice map
-        let exercises = [
-            {
-                exercises: 'legtuck'
+    async _addExercisesToMap(workoutSchedule) {
+        for (let i = 0; i < workoutSchedule.length; i++) {
+            let muscleGroupOne = await workoutSchedule[i].muscleGroupOne
+            let muscleGroupTwo = await workoutSchedule[i].muscleGroupTwo
+            let supplumentalOne = await workoutSchedule[i].supplumentalOne
+            let supplumentalTwo = await workoutSchedule[i].supplumentalTwo
+
+            if (muscleGroupOne) {
+                let exercises = await new Exercise(muscleGroupOne).exerciseData
+                for (let i = 0; i < exercises.length; i++) {
+                    let exercise = await exercises[i].exercise
+                    console.log(exercise)
+                    if(muscleGroupOne === workoutSchedule[i].muscleGroupOne) {
+                        workoutSchedule[i]['workout'] = exercise
+                    }
+                }
             }
-        ]
-        workoutSchedule[0]['workout'] = exercises
+            if (muscleGroupTwo) console.log('')
+            if (supplumentalOne) console.log('')
+            if (supplumentalTwo) console.log('')
+        }
+
+
+        //workoutSchedule[0]['workout'] = exercises
         return workoutSchedule
     }
 
@@ -170,20 +186,22 @@ class CreateWorkoutForUserService {
             //make sure the following combinations don't happen
             if (
                 workoutSchedule[i].muscleGroupOne === 'chest' && workoutSchedule[i].muscleGroupTwo === 'legs' ||
-                workoutSchedule[i].muscleGroupOne === 'legs' && workoutSchedule[i].muscleGroupTwo === 'chest'
-            ) this._addExercisesToMap(workoutSchedule)
+                workoutSchedule[i].muscleGroupOne === 'legs' && workoutSchedule[i].muscleGroupTwo === 'chest' ||
+                workoutSchedule[i].muscleGroupOne === 'biceps' && !workoutSchedule[i].muscleGroupTwo ||
+                workoutSchedule[i].muscleGroupOne === 'triceps' && !workoutSchedule[i].muscleGroupTwo
+            ) this._addBaseMuscleGroup(workoutSchedule)
         }
     }
 
     _addSupplumentalMuscleGroup(workoutSchedule) {
         for (let i = 0; i < workoutSchedule.length; i++) {
             //input abs if id is odd and calves if even and traps if even, but not last 2 days
-            if (workoutSchedule[i].id % 2 == 1 && workoutSchedule[i].baseNum !== 0 && workoutSchedule[i].baseNum !== 0) workoutSchedule[i]['supplumentalOne'] = 'abs'
-            if (workoutSchedule[i].id % 2 == 0 && workoutSchedule[i].baseNum !== 0 && workoutSchedule[i].baseNum !== 0) {
+            if (workoutSchedule[i].id % 2 == 1 && workoutSchedule[i].muscleGroupsAmmount !== 0 && workoutSchedule[i].muscleGroupsAmmount !== 0) workoutSchedule[i]['supplumentalOne'] = 'abs'
+            if (workoutSchedule[i].id % 2 == 0 && workoutSchedule[i].muscleGroupsAmmount !== 0 && workoutSchedule[i].muscleGroupsAmmount !== 0) {
                 workoutSchedule[i]['supplumentalOne'] = 'calves'
                 if (workoutSchedule[i].id < 6) workoutSchedule[i]['supplumentalTwo'] = 'traps'
             }
-            if (workoutSchedule[i].baseNum == 0) workoutSchedule[i]['rest'] = 'rest'
+            if (workoutSchedule[i].muscleGroupsAmmount == 0) workoutSchedule[i]['rest'] = 'rest'
         }
     }
 
@@ -192,12 +210,12 @@ class CreateWorkoutForUserService {
     }
 
     _addFirstBaseMuscleGroup(id, workoutSchedule, baseMuscleGroups, randomeBaseMuscleGroupOrder) {
-        if (workoutSchedule.baseNum == 1) workoutSchedule['muscleGroupOne'] = baseMuscleGroups[id]
+        if (workoutSchedule.muscleGroupsAmmount == 1) workoutSchedule['muscleGroupOne'] = baseMuscleGroups[id]
         return randomeBaseMuscleGroupOrder.splice(id, 1)
     }
 
     _addSecondBaseMuscleGroup(workoutSchedule, baseMuscleGroups, randomeBaseMuscleGroupOrder) {
-        if (workoutSchedule.baseNum == 2) {
+        if (workoutSchedule.muscleGroupsAmmount == 2) {
             workoutSchedule['muscleGroupOne'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
             workoutSchedule['muscleGroupTwo'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[1]]
         }
@@ -237,7 +255,7 @@ class CreateWorkoutForUserService {
         return num[Math.floor(Math.random() * num)]
     }
 
-    _randomeizeWeekNum(num) {
+    _randomeize(num) {
         return Math.floor(Math.random() * num)
     }
 
@@ -251,7 +269,7 @@ class CreateWorkoutForUserService {
 
         //shuffle the array
         for (let i = arr.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * i)
+            let j = this._randomeize(i)
             let temp = arr[i]
             arr[i] = arr[j]
             arr[j] = temp
