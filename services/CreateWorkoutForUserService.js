@@ -1,6 +1,7 @@
 const Users = require('../lib/User')
 const Exercise = require('../lib/Exercise')
 const { CreateStrategy, Strategy } = require('../models')
+
 class CreateWorkoutForUserService {
     constructor(id) {
         this._user_id = id
@@ -68,30 +69,96 @@ class CreateWorkoutForUserService {
                                 [
                                     {
                                         id: 1,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
                                         muscleGroupsAmmount: 2
                                     },
                                     {
-                                        id: 2,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
                                         muscleGroupsAmmount: 0
                                     },
                                     {
-                                        id: 3,
+                                        muscleGroupsAmmount: 0
+                                    }
+                                ],
+                                [
+                                    {
+                                        id: 1,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
                                         muscleGroupsAmmount: 2
                                     },
                                     {
-                                        id: 4,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
                                         muscleGroupsAmmount: 0
                                     },
                                     {
-                                        id: 5,
+                                        muscleGroupsAmmount: 0
+                                    }
+                                ],
+                                [
+                                    {
+                                        id: 1,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
                                         muscleGroupsAmmount: 2
                                     },
                                     {
-                                        id: 6,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
                                         muscleGroupsAmmount: 0
                                     },
                                     {
-                                        id: 7,
+                                        muscleGroupsAmmount: 0
+                                    }
+                                ],
+                                [
+                                    {
+                                        id: 1,
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 1
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 2
+                                    },
+                                    {
+                                        muscleGroupsAmmount: 0
+                                    },
+                                    {
                                         muscleGroupsAmmount: 0
                                     }
                                 ]
@@ -181,11 +248,11 @@ class CreateWorkoutForUserService {
                     }
                 }
             }
+            
             if (muscleGroupTwo) console.log('')
             if (supplumentalOne) console.log('')
             if (supplumentalTwo) console.log('')
         }
-
 
         //workoutSchedule[0]['workout'] = exercises
         return workoutSchedule
@@ -202,19 +269,88 @@ class CreateWorkoutForUserService {
             //add an id to every object
             if (!workoutSchedule[i].id) this._addIdToObject(workoutSchedule[i - 1].id, workoutSchedule[i])
 
-            //input randomized musclegroup array into first base muscle group
-            this._addFirstBaseMuscleGroup(randomeBaseMuscleGroupOrder[i], workoutSchedule[i], baseMuscleGroups, randomeBaseMuscleGroupOrder)
-            //input remainder of that array into Second base muscle group
-            this._addSecondBaseMuscleGroup(workoutSchedule[i], baseMuscleGroups, randomeBaseMuscleGroupOrder)
+            let invalid = true;
+            let count = 0;
+            while(invalid) {                
+                console.log(randomeBaseMuscleGroupOrder);
 
-            //make sure the following combinations don't happen
-            if (
-                workoutSchedule[i].muscleGroupOne === 'chest' && workoutSchedule[i].muscleGroupTwo === 'legs' ||
-                workoutSchedule[i].muscleGroupOne === 'legs' && workoutSchedule[i].muscleGroupTwo === 'chest' ||
-                workoutSchedule[i].muscleGroupOne === 'biceps' && !workoutSchedule[i].muscleGroupTwo ||
-                workoutSchedule[i].muscleGroupOne === 'triceps' && !workoutSchedule[i].muscleGroupTwo
-            ) this._addBaseMuscleGroup(workoutSchedule)
+                count++;
+                if(count > 5) {
+                    this._addBaseMuscleGroup(workoutSchedule)
+                    return;
+                }
+                let tryThis = {
+                    one: undefined,
+                    two: undefined,
+                };
+
+                // attempt to find pair                
+                if(workoutSchedule[i].muscleGroupsAmmount == 1) {
+                    //input randomized musclegroup array into first base muscle group
+                    //this._addFirstBaseMuscleGroup(i, workoutSchedule[i], baseMuscleGroups, randomeBaseMuscleGroupOrder)
+                    
+                    tryThis.one = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
+
+                    if(!this._validate(tryThis.one, tryThis.two)) {
+                        randomeBaseMuscleGroupOrder = this._shuffle(randomeBaseMuscleGroupOrder)
+                        continue;
+                    }
+
+                    // accept 
+                    workoutSchedule[i]['muscleGroupOne'] = tryThis.one;
+                    
+                    // remove from pool
+                    randomeBaseMuscleGroupOrder.splice(0, 1);
+                    
+                    // continue
+                    invalid = false;
+
+                } else if(workoutSchedule[i].muscleGroupsAmmount == 2) {
+                    //input remainder of that array into Second base muscle group
+                    // this._addSecondBaseMuscleGroup(workoutSchedule[i], baseMuscleGroups, randomeBaseMuscleGroupOrder)
+
+                    tryThis.one = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
+                    tryThis.two = baseMuscleGroups[randomeBaseMuscleGroupOrder[1]]
+
+
+                    if(!this._validate(tryThis.one, tryThis.two)) {
+                        randomeBaseMuscleGroupOrder = this._shuffle(randomeBaseMuscleGroupOrder)
+                        continue;
+                    }
+
+                    // accept 
+                    workoutSchedule[i]['muscleGroupOne'] = tryThis.one;
+                    workoutSchedule[i]['muscleGroupTwo'] = tryThis.two;
+
+                    // remove from pool
+                    randomeBaseMuscleGroupOrder.splice(0, 2);
+                    
+                    // continue
+                    invalid = false;
+
+                } else {
+                    // continue
+                    invalid = false;
+                }
+            }
+
         }
+    }
+
+    _validate(muscleGroupOne, muscleGroupTwo) {
+        //make sure the following combinations don't happen
+        if (
+            (muscleGroupOne === 'chest' && muscleGroupTwo === 'legs') ||
+            (muscleGroupOne === 'legs' && muscleGroupTwo === 'chest') 
+            //(muscleGroupOne === 'biceps' && muscleGroupTwo === undefined) ||
+            //(muscleGroupOne === 'triceps' && muscleGroupTwo === undefined)
+        ) {
+            console.log(muscleGroupOne, muscleGroupTwo);
+        // this._addBaseMuscleGroup(workoutSchedule)
+            return false;
+            
+        }
+        return true;
     }
 
     _addSupplumentalMuscleGroup(workoutSchedule) {
@@ -234,15 +370,14 @@ class CreateWorkoutForUserService {
     }
 
     _addFirstBaseMuscleGroup(id, workoutSchedule, baseMuscleGroups, randomeBaseMuscleGroupOrder) {
-        if (workoutSchedule.muscleGroupsAmmount == 1) workoutSchedule['muscleGroupOne'] = baseMuscleGroups[id]
+        workoutSchedule['muscleGroupOne'] = baseMuscleGroups[id]
         return randomeBaseMuscleGroupOrder.splice(id, 1)
     }
 
     _addSecondBaseMuscleGroup(workoutSchedule, baseMuscleGroups, randomeBaseMuscleGroupOrder) {
-        if (workoutSchedule.muscleGroupsAmmount == 2) {
-            workoutSchedule['muscleGroupOne'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
-            workoutSchedule['muscleGroupTwo'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[1]]
-        }
+        console.log("two:",baseMuscleGroups, randomeBaseMuscleGroupOrder )
+        workoutSchedule['muscleGroupOne'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
+        workoutSchedule['muscleGroupTwo'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[1]]
     }
 
     async _getExerciseMap() {
@@ -299,6 +434,16 @@ class CreateWorkoutForUserService {
             arr[j] = temp
         }
         return arr
+    }
+
+    _shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            let j = this._randomeize(i)
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        return arr;
     }
 
     async _addStrategyToDb(randomStrategy) {
