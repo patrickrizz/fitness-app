@@ -34,17 +34,18 @@
 // 1. Colors
 // ==========================================================================
 
-$primary-color: #fff !default;
+$primary-color: #420d09 !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
-$secondary-color: color("blue-grey", "darken-4") !default;
+// $secondary-color: color("blue-grey", "darken-4") !default;
+$secondary-color: #393f47!default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: $secondary-color !default;
 $button-color: #64FFDA !default;
 
-$bg-color: #0A192F;
+$bg-color:#393f47;
 $bg-color-2: $secondary-color;
 
 $navbar-color: transparent !default;

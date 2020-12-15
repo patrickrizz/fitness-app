@@ -71,7 +71,7 @@
 
     &::before {    
         content: "";
-        background: lighten(#000, 8%);
+        background: lighten($bg-color, 8%);
         background-size: cover;
         position: absolute;
         top: 0px;
