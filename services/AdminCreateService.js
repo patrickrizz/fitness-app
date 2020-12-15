@@ -18,7 +18,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = TRUE : equipment = FALSE
                     // Add excersices to db
                     CreateChestExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
