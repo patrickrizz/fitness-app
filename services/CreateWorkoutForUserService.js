@@ -20,7 +20,7 @@ class CreateWorkoutForUserService {
 
             //randomly pick strategy
             let randomStrategy = await this._selectRandomStrategy(strategies)
-            console.log(randomStrategy)
+
             //add strategy to db
             await this._addStrategyToDb(randomStrategy)
             //create workout plan
@@ -195,7 +195,7 @@ class CreateWorkoutForUserService {
                         let workoutSchedule = workout.consecutiveRestDays
 
                         //pick a random number to select a random workout schedule
-                        let randomWeek = this._randomeize(workoutSchedule.length)
+                        let randomWeek = this._randomize(workoutSchedule.length)
 
                         //put random number into array
                         workoutSchedule = workoutSchedule[randomWeek]
@@ -210,9 +210,10 @@ class CreateWorkoutForUserService {
                         workoutSchedule = this._addExercisesToMap(workoutSchedule)
 
                         //add exercise object to exercise map
-                        exerciseMap[i]['schedule'] = await workoutSchedule
+                        workoutSchedule = exerciseMap[i]['schedule'] = await workoutSchedule
 
-                        console.log(exerciseMap[i].schedule)
+
+                        console.log(workoutSchedule)
                         //randomly slect exercises based on muscle group and how many muscles per day determined already
                         return
 
@@ -238,29 +239,75 @@ class CreateWorkoutForUserService {
             let supplumentalOne = await workoutSchedule[i].supplumentalOne
             let supplumentalTwo = await workoutSchedule[i].supplumentalTwo
 
+
+
+            //use number to pull exercise out of db
+            //add exercise to the exercise object for that muscle group
+
+            //check for muscle group
             if (muscleGroupOne) {
-                let exercises = await new Exercise(muscleGroupOne).exerciseData
-                for (let i = 0; i < exercises.length; i++) {
-                    let exercise = await exercises[i].exercise
-                    console.log(exercise)
-                    if (muscleGroupOne === workoutSchedule[i].muscleGroupOne) {
-                        workoutSchedule[i]['workout'] = exercise
-                    }
+                let exercises
+                let exercise
+                let exerciseTwo
+                let random
+
+                switch (muscleGroupOne) {
+                    case "CHEST":
+                        exercises = await new Exercise(null).chestData
+                        random = this._randomize(exercises.length) + 1
+                        exercise = await new Exercise(random).chestExercise
+                        random = this._randomize(exercises.length) + 1
+                        exerciseTwo = await new Exercise(random).chestExercise
+                        break
+                    case "TRICEPS":
+                        exercises = await new Exercise(null).tricepsData
+                        random = this._randomize(exercises.length) + 1
+                        exercise = await new Exercise(random).tricepsExercise
+                        random = this._randomize(exercises.length) + 1
+                        exerciseTwo = await new Exercise(random).tricepsExercise
+                        break
+                    case "BICEPS":
+                        exercises = await new Exercise(null).bicepsData
+                        random = this._randomize(exercises.length) + 1
+                        exercise = await new Exercise(random).bicepsExercise
+                        random = this._randomize(exercises.length) + 1
+                        exerciseTwo = await new Exercise(random).bicepsExercise
+                        break
+                    case "LEGS":
+                        exercises = await new Exercise(null).legsData
+                        random = this._randomize(exercises.length) + 1
+                        exercise = await new Exercise(random).legsExercise
+                        random = this._randomize(exercises.length) + 1
+                        exerciseTwo = await new Exercise(random).legsExercise
+                        break
+                    case "BACK":
+                        exercises = await new Exercise(null).backData
+                        random = this._randomize(exercises.length) + 1
+                        exercise = await new Exercise(random).backExercise
+                        random = this._randomize(exercises.length) + 1
+                        exerciseTwo = await new Exercise(random).backExercise
+                        break
+                    case "SHOULDERS":
+                        exercises = await new Exercise(null).shouldersData
+                        random = this._randomize(exercises.length) + 1
+                        exercise = await new Exercise(random).shouldersExercise
+                        random = this._randomize(exercises.length) + 1
+                        exerciseTwo = await new Exercise(random).shouldersExercise
+                        break
                 }
+
+                workoutSchedule[i]['exerciseOne'] = exercise.dataValues.exercise
+                workoutSchedule[i]['exerciseTwo'] = exerciseTwo.dataValues.exercise
             }
-            
-            if (muscleGroupTwo) console.log('')
-            if (supplumentalOne) console.log('')
-            if (supplumentalTwo) console.log('')
         }
 
-        //workoutSchedule[0]['workout'] = exercises
+        
         return workoutSchedule
     }
 
     _addBaseMuscleGroup(workoutSchedule) {
         //create baseMuscleGroups array
-        let baseMuscleGroups = ['chest', 'triceps', 'biceps', 'legs', 'back', 'shoulders']
+        let baseMuscleGroups = ['CHEST', 'TRICEPS', 'BICEPS', 'LEGS', 'BACK', 'SHOULDERS']
 
         //push muscle group length into array and shuffle it
         let randomeBaseMuscleGroupOrder = this._randomizeMuscleGroupOrder(baseMuscleGroups.length - 1)
@@ -271,11 +318,9 @@ class CreateWorkoutForUserService {
 
             let invalid = true;
             let count = 0;
-            while(invalid) {                
-                console.log(randomeBaseMuscleGroupOrder);
-
+            while (invalid) {
                 count++;
-                if(count > 5) {
+                if (count > 5) {
                     this._addBaseMuscleGroup(workoutSchedule)
                     return;
                 }
@@ -285,35 +330,33 @@ class CreateWorkoutForUserService {
                 };
 
                 // attempt to find pair                
-                if(workoutSchedule[i].muscleGroupsAmmount == 1) {
+                if (workoutSchedule[i].muscleGroupsAmmount == 1) {
                     //input randomized musclegroup array into first base muscle group
-                    //this._addFirstBaseMuscleGroup(i, workoutSchedule[i], baseMuscleGroups, randomeBaseMuscleGroupOrder)
-                    
+
                     tryThis.one = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
 
-                    if(!this._validate(tryThis.one, tryThis.two)) {
+                    if (!this._validate(tryThis.one, tryThis.two)) {
                         randomeBaseMuscleGroupOrder = this._shuffle(randomeBaseMuscleGroupOrder)
                         continue;
                     }
 
                     // accept 
                     workoutSchedule[i]['muscleGroupOne'] = tryThis.one;
-                    
+
                     // remove from pool
                     randomeBaseMuscleGroupOrder.splice(0, 1);
-                    
+
                     // continue
                     invalid = false;
 
-                } else if(workoutSchedule[i].muscleGroupsAmmount == 2) {
+                } else if (workoutSchedule[i].muscleGroupsAmmount == 2) {
                     //input remainder of that array into Second base muscle group
-                    // this._addSecondBaseMuscleGroup(workoutSchedule[i], baseMuscleGroups, randomeBaseMuscleGroupOrder)
 
                     tryThis.one = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
                     tryThis.two = baseMuscleGroups[randomeBaseMuscleGroupOrder[1]]
 
 
-                    if(!this._validate(tryThis.one, tryThis.two)) {
+                    if (!this._validate(tryThis.one, tryThis.two)) {
                         randomeBaseMuscleGroupOrder = this._shuffle(randomeBaseMuscleGroupOrder)
                         continue;
                     }
@@ -324,7 +367,7 @@ class CreateWorkoutForUserService {
 
                     // remove from pool
                     randomeBaseMuscleGroupOrder.splice(0, 2);
-                    
+
                     // continue
                     invalid = false;
 
@@ -341,14 +384,9 @@ class CreateWorkoutForUserService {
         //make sure the following combinations don't happen
         if (
             (muscleGroupOne === 'chest' && muscleGroupTwo === 'legs') ||
-            (muscleGroupOne === 'legs' && muscleGroupTwo === 'chest') 
-            //(muscleGroupOne === 'biceps' && muscleGroupTwo === undefined) ||
-            //(muscleGroupOne === 'triceps' && muscleGroupTwo === undefined)
+            (muscleGroupOne === 'legs' && muscleGroupTwo === 'chest')
         ) {
-            console.log(muscleGroupOne, muscleGroupTwo);
-        // this._addBaseMuscleGroup(workoutSchedule)
             return false;
-            
         }
         return true;
     }
@@ -375,7 +413,7 @@ class CreateWorkoutForUserService {
     }
 
     _addSecondBaseMuscleGroup(workoutSchedule, baseMuscleGroups, randomeBaseMuscleGroupOrder) {
-        console.log("two:",baseMuscleGroups, randomeBaseMuscleGroupOrder )
+        console.log("two:", baseMuscleGroups, randomeBaseMuscleGroupOrder)
         workoutSchedule['muscleGroupOne'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[0]]
         workoutSchedule['muscleGroupTwo'] = baseMuscleGroups[randomeBaseMuscleGroupOrder[1]]
     }
@@ -414,7 +452,7 @@ class CreateWorkoutForUserService {
         return num[Math.floor(Math.random() * num)]
     }
 
-    _randomeize(num) {
+    _randomize(num) {
         return Math.floor(Math.random() * num)
     }
 
@@ -428,7 +466,7 @@ class CreateWorkoutForUserService {
 
         //shuffle the array
         for (let i = arr.length - 1; i > 0; i--) {
-            let j = this._randomeize(i)
+            let j = this._randomize(i)
             let temp = arr[i]
             arr[i] = arr[j]
             arr[j] = temp
@@ -438,7 +476,7 @@ class CreateWorkoutForUserService {
 
     _shuffle(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
-            let j = this._randomeize(i)
+            let j = this._randomize(i)
             let temp = arr[i]
             arr[i] = arr[j]
             arr[j] = temp
