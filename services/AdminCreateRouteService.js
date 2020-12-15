@@ -7,14 +7,14 @@ class AdminCreateRouteService {
     }
 
     async params() {
-        let exercise = await this._content.exerciseData
+        //let exercise = await this._content.exerciseData
         let experience = await this._content.experienceData
         let objective = await this._content.objectiveData
         let role = await this._content.roleData
         let strategy = await this._content.strategyData
 
         return {
-            exercise,
+            //exercise,
             experience,
             objective,
             role,
