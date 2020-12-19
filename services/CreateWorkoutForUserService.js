@@ -239,69 +239,179 @@ class CreateWorkoutForUserService {
             let supplumentalOne = await workoutSchedule[i].supplumentalOne
             let supplumentalTwo = await workoutSchedule[i].supplumentalTwo
 
-
-
-            //use number to pull exercise out of db
-            //add exercise to the exercise object for that muscle group
+            //base num of exercises off of skill level
+            //
 
             //check for muscle group
             if (muscleGroupOne) {
                 let exercises
                 let exercise
-                let exerciseTwo
+                let numOfExercisesInDb
+                let numOfExercisesInMusclegroup = 1
                 let random
+                let exercisesArray = []
+
+
+
 
                 switch (muscleGroupOne) {
                     case "CHEST":
                         exercises = await new Exercise(null).chestData
-                        random = this._randomize(exercises.length) + 1
-                        exercise = await new Exercise(random).chestExercise
-                        random = this._randomize(exercises.length) + 1
-                        exerciseTwo = await new Exercise(random).chestExercise
+                        numOfExercisesInDb = exercises.length
+
+                        //create an array out of the number of exercises in db
+                        for (let e = 0; e < numOfExercisesInDb; ++e) {
+                            exercisesArray.push(exercises.length--)
+                        }
+
+                        //shuffle the array
+                        this._shuffle(exercisesArray)
+
+
+                        //add exercise to object
+                        for (let a = 0; a < numOfExercisesInMusclegroup; a++) {
+                            exercise = await new Exercise(exercisesArray[0]).chestExercise
+
+                            //remove number from array to prevent from repeating itself
+                            exercisesArray.splice(0, 1);
+
+                            //add it to the object
+                            workoutSchedule[i][`chest exercise ${a + 1}`] = exercise.dataValues.exercise
+                        }
+
                         break
                     case "TRICEPS":
                         exercises = await new Exercise(null).tricepsData
-                        random = this._randomize(exercises.length) + 1
-                        exercise = await new Exercise(random).tricepsExercise
-                        random = this._randomize(exercises.length) + 1
-                        exerciseTwo = await new Exercise(random).tricepsExercise
+                        numOfExercisesInDb = exercises.length
+
+                        //create an array out of the number of exercises in db
+                        for (let e = 0; e < numOfExercisesInDb; ++e) {
+                            exercisesArray.push(exercises.length--)
+                        }
+
+                        //shuffle the array
+                        this._shuffle(exercisesArray)
+
+
+                        //add exercise to object
+                        for (let a = 0; a < numOfExercisesInMusclegroup; a++) {
+                            exercise = await new Exercise(exercisesArray[0]).tricepsExercise
+
+                            //remove number from array to prevent from repeating itself
+                            exercisesArray.splice(0, 1);
+
+                            //add it to the object
+                            workoutSchedule[i][`triceps exercise ${a + 1}`] = exercise.dataValues.exercise
+                        }
+
                         break
                     case "BICEPS":
                         exercises = await new Exercise(null).bicepsData
-                        random = this._randomize(exercises.length) + 1
-                        exercise = await new Exercise(random).bicepsExercise
-                        random = this._randomize(exercises.length) + 1
-                        exerciseTwo = await new Exercise(random).bicepsExercise
+                        numOfExercisesInDb = exercises.length
+
+                        //create an array out of the number of exercises in db
+                        for (let e = 0; e < numOfExercisesInDb; ++e) {
+                            exercisesArray.push(exercises.length--)
+                        }
+
+                        //shuffle the array
+                        this._shuffle(exercisesArray)
+
+
+                        //add exercise to object
+                        for (let a = 0; a < numOfExercisesInMusclegroup; a++) {
+                            exercise = await new Exercise(exercisesArray[0]).bicepsExercise
+
+                            //remove number from array to prevent from repeating itself
+                            exercisesArray.splice(0, 1);
+
+                            //add it to the object
+                            workoutSchedule[i][`biceps exercise ${a + 1}`] = exercise.dataValues.exercise
+                        }
+
                         break
                     case "LEGS":
                         exercises = await new Exercise(null).legsData
-                        random = this._randomize(exercises.length) + 1
-                        exercise = await new Exercise(random).legsExercise
-                        random = this._randomize(exercises.length) + 1
-                        exerciseTwo = await new Exercise(random).legsExercise
+                        numOfExercisesInDb = exercises.length
+
+                        //create an array out of the number of exercises in db
+                        for (let e = 0; e < numOfExercisesInDb; ++e) {
+                            exercisesArray.push(exercises.length--)
+                        }
+
+                        //shuffle the array
+                        this._shuffle(exercisesArray)
+
+
+                        //add exercise to object
+                        for (let a = 0; a < numOfExercisesInMusclegroup; a++) {
+                            exercise = await new Exercise(exercisesArray[0]).legsExercise
+
+                            //remove number from array to prevent from repeating itself
+                            exercisesArray.splice(0, 1);
+
+                            //add it to the object
+                            workoutSchedule[i][`legs exercise ${a + 1}`] = exercise.dataValues.exercise
+                        }
+
                         break
                     case "BACK":
                         exercises = await new Exercise(null).backData
-                        random = this._randomize(exercises.length) + 1
-                        exercise = await new Exercise(random).backExercise
-                        random = this._randomize(exercises.length) + 1
-                        exerciseTwo = await new Exercise(random).backExercise
+                        numOfExercisesInDb = exercises.length
+
+                        //create an array out of the number of exercises in db
+                        for (let e = 0; e < numOfExercisesInDb; ++e) {
+                            exercisesArray.push(exercises.length--)
+                        }
+
+                        //shuffle the array
+                        this._shuffle(exercisesArray)
+
+
+                        //add exercise to object
+                        for (let a = 0; a < numOfExercisesInMusclegroup; a++) {
+                            exercise = await new Exercise(exercisesArray[0]).backExercise
+
+                            //remove number from array to prevent from repeating itself
+                            exercisesArray.splice(0, 1);
+
+                            //add it to the object
+                            workoutSchedule[i][`back exercise ${a + 1}`] = exercise.dataValues.exercise
+                        }
+
                         break
                     case "SHOULDERS":
                         exercises = await new Exercise(null).shouldersData
-                        random = this._randomize(exercises.length) + 1
-                        exercise = await new Exercise(random).shouldersExercise
-                        random = this._randomize(exercises.length) + 1
-                        exerciseTwo = await new Exercise(random).shouldersExercise
+                        numOfExercisesInDb = exercises.length
+
+                        //create an array out of the number of exercises in db
+                        for (let e = 0; e < numOfExercisesInDb; ++e) {
+                            exercisesArray.push(exercises.length--)
+                        }
+
+                        //shuffle the array
+                        this._shuffle(exercisesArray)
+
+
+                        //add exercise to object
+                        for (let a = 0; a < numOfExercisesInMusclegroup; a++) {
+                            exercise = await new Exercise(exercisesArray[0]).shouldersExercise
+
+                            //remove number from array to prevent from repeating itself
+                            exercisesArray.splice(0, 1);
+
+                            //add it to the object
+                            workoutSchedule[i][`shoulders exercise ${a + 1}`] = exercise.dataValues.exercise
+                        }
+
                         break
                 }
 
-                workoutSchedule[i]['exerciseOne'] = exercise.dataValues.exercise
-                workoutSchedule[i]['exerciseTwo'] = exerciseTwo.dataValues.exercise
+
             }
         }
 
-        
+
         return workoutSchedule
     }
 
