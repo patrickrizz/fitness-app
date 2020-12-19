@@ -18,7 +18,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    //(equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateChestExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -47,7 +47,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    //(equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateBicepsExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -68,6 +68,7 @@ class AdminCreate {
                     this._res.render('admin/create_exercise', { errors, title: 'Exercises', ...params })
                 }
                 return
+
             case 'TRICEPS':
                 // Validate exercise doesn't exsist
                 validate = await CreateTricepsExercise.findOne({
@@ -75,7 +76,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    //(equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateTricepsExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -103,7 +104,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    //(equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateLegsExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -124,6 +125,7 @@ class AdminCreate {
                     this._res.render('admin/create_exercise', { errors, title: 'Exercises', ...params })
                 }
                 return
+
             case 'SHOULDERS':
                 // Validate exercise doesn't exsist
                 validate = await CreateShouldersExercise.findOne({
@@ -131,7 +133,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    //(equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateShouldersExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -152,6 +154,7 @@ class AdminCreate {
                     this._res.render('admin/create_exercise', { errors, title: 'Exercises', ...params })
                 }
                 return
+
             case 'BACK':
                 // Validate exercise doesn't exsist
                 validate = await CreateBackExercise.findOne({
@@ -159,7 +162,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                   // (equipment === 'on') ? equipment = 1 : equipment = 0
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateBackExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }

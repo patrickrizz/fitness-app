@@ -103,3 +103,26 @@ Order from start to finish:
 
 
 4. Dashboard Layout
+
+
+
+
+
+
+Add a feature when signing up to pick how many days you want to workout a week if you are level 3 and up
+
+
+
+Things I need from other other people and possibly "experts"
+    - strategies
+        - different workout levels for each strategy, there can also be constrains saying if the startegy can't be done by a beginner
+
+
+
+Future Ideas
+ - add button to select equipment available
+ - add switches for selecting constraints such as only chest and legs never togather
+
+
+
+ - ADD DB ENTRYS TO ALWAYS ADD SHIT IN ALL CAPS TO DB
