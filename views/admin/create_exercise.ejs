@@ -22,9 +22,9 @@
                             <div class="input-field col s12 m6">
                                 <select name="type_of_exercise">
                                     <option value="" disabled selected>Type of exercise</option>
-                                    <option value="compound">Compound</option>
-                                    <option value="isolation">Isolation</option>
-                                    <option value="supplemental">Supplemental</option>
+                                    <option value="COMPOUND">Compound</option>
+                                    <option value="ISOLATION">Isolation</option>
+                                    <option value="SUPPLEMENTAL">Supplemental</option>
                                 </select>
                             </div>
                             <div class="input-field col s12 m6">
@@ -59,17 +59,76 @@
                 <table id="table">
                     <thead>
                         <tr>
+                            <th>ID</th>
+                            <th>Table (Muscle)</th>
                             <th>Exercise</th>
-                            <th>Muscle</th>
                             <th>Type</th>
                             <th>Equipment</th>
-                            <th></th>
-                            <th></th>
+                            <th>Description</th>
                         </tr>
                     </thead>
-                    <!-- <tbody>
-
-                    </tbody> -->
+                    <tbody>
+                        <% for(i = 0; i < chestExercise.length; i++) {%>
+                            <tr>
+                                <td><%= chestExercise[i].id %></td>
+                                <td>Chest</td>
+                                <td><%= chestExercise[i].exercise %></td>
+                                <td><%= chestExercise[i].type_of_exercise %></td>
+                                <td><%= chestExercise[i].equipment %></td>
+                                <td><%= chestExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
+                        <% for(i = 0; i < tricepsExercise.length; i++) {%>
+                            <tr>
+                                <td><%= tricepsExercise[i].id %></td>
+                                <td>Triceps</td>
+                                <td><%= tricepsExercise[i].exercise %></td>
+                                <td><%= tricepsExercise[i].type_of_exercise %></td>
+                                <td><%= tricepsExercise[i].equipment %></td>
+                                <td><%= tricepsExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
+                        <% for(i = 0; i < bicepsExercise.length; i++) {%>
+                            <tr>
+                                <td><%= bicepsExercise[i].id %></td>
+                                <td>Biceps</td>
+                                <td><%= bicepsExercise[i].exercise %></td>
+                                <td><%= bicepsExercise[i].type_of_exercise %></td>
+                                <td><%= bicepsExercise[i].equipment %></td>
+                                <td><%= bicepsExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
+                        <% for(i = 0; i < backExercise.length; i++) {%>
+                            <tr>
+                                <td><%= backExercise[i].id %></td>
+                                <td>Back</td>
+                                <td><%= backExercise[i].exercise %></td>
+                                <td><%= backExercise[i].type_of_exercise %></td>
+                                <td><%= backExercise[i].equipment %></td>
+                                <td><%= backExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
+                        <% for(i = 0; i < shouldersExercise.length; i++) {%>
+                            <tr>
+                                <td><%= shouldersExercise[i].id %></td>
+                                <td>Shoulders</td>
+                                <td><%= shouldersExercise[i].exercise %></td>
+                                <td><%= shouldersExercise[i].type_of_exercise %></td>
+                                <td><%= shouldersExercise[i].equipment %></td>
+                                <td><%= shouldersExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
+                        <% for(i = 0; i < abdominalExercise.length; i++) {%>
+                            <tr>
+                                <td><%= abdominalExercise[i].id %></td>
+                                <td>Abdominal</td>
+                                <td><%= abdominalExercise[i].exercise %></td>
+                                <td><%= abdominalExercise[i].type_of_exercise %></td>
+                                <td><%= abdominalExercise[i].equipment %></td>
+                                <td><%= abdominalExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
                 </table>
             </div>
         </div>

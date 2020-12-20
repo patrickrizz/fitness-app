@@ -6,15 +6,19 @@ const router = express.Router()
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect('/')
+        if (req.user.id === '105097979934155160948') {
+            res.redirect('/admin')
+        } else {
+            res.redirect('/')
+        }
     })
 
 // Login
 router.post('/login', async (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/admin',
         failureRedirect: '/',
-        failureFlash: true,
+        failureFlash: true
     })(req, res, next)
 })
 

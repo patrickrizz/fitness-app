@@ -1,4 +1,4 @@
-const { CreateChestExercise, CreateBicepsExercise, CreateTricepsExercise, CreateLegsExercise, CreateBackExercise, CreateShouldersExercise, CreateExperienceLevel, CreateObjective, CreateRole, CreateStrategy } = require('../models')
+const { CreateChestExercise, CreateBicepsExercise, CreateTricepsExercise, CreateLegsExercise, CreateBackExercise, CreateShouldersExercise, CreateAbdominalExercise, CreateExperienceLevel, CreateObjective, CreateRole, CreateStrategy } = require('../models')
 const AdminCreateRouteService = require('./AdminCreateRouteService')
 
 class AdminCreate {
@@ -165,6 +165,34 @@ class AdminCreate {
                     (equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateBackExercise.findOrCreate({
+                        where: { exercise, type_of_exercise, exercise_description, equipment }
+                    })
+
+                    await this._req.flash(
+                        'success_msg',
+                        `${exercise} exercise created`
+                    )
+
+                    await this._res.redirect('/admin/create/create_exercise')
+                } else {
+                    // Push validation errors
+                    let errors = []
+                    let params = await new AdminCreateRouteService().params()
+                    errors.push({ msg: `${validate.dataValues.exercise} exercise already exists` })
+
+                    this._res.render('admin/create_exercise', { errors, title: 'Exercises', ...params })
+                }
+                return
+            case 'ABDOMINAL':
+                // Validate exercise doesn't exsist
+                validate = await CreateAbdominalExercise.findOne({
+                    where: { exercise }
+                })
+
+                if (!validate) {
+                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    // Add excersices to db
+                    CreateAbdominalExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
                     })
 
