@@ -108,6 +108,16 @@
                                 <td><%= backExercise[i].exercise_description %></td>
                             </tr>
                         <% } %>
+                        <% for(i = 0; i < legsExercise.length; i++) {%>
+                            <tr>
+                                <td><%= legsExercise[i].id %></td>
+                                <td>Legs</td>
+                                <td><%= legsExercise[i].exercise %></td>
+                                <td><%= legsExercise[i].type_of_exercise %></td>
+                                <td><%= legsExercise[i].equipment %></td>
+                                <td><%= legsExercise[i].exercise_description %></td>
+                            </tr>
+                        <% } %>
                         <% for(i = 0; i < shouldersExercise.length; i++) {%>
                             <tr>
                                 <td><%= shouldersExercise[i].id %></td>
