@@ -6,7 +6,7 @@ const router = express.Router()
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
-        if (req.user.id === '105097979934155160948') {
+        if (req.user.id === '106355498027631381428' || '105097979934155160948') {
             res.redirect('/admin')
         } else {
             res.redirect('/')
