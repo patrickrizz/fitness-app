@@ -18,7 +18,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateChestExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -47,7 +47,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateBicepsExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -76,7 +76,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateTricepsExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -104,7 +104,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateLegsExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -133,7 +133,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateShouldersExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -162,7 +162,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateBackExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
@@ -190,7 +190,7 @@ class AdminCreate {
                 })
 
                 if (!validate) {
-                    (equipment === 'on') ? equipment = 1 : equipment = 0
+                    //(equipment === 'on') ? equipment = 1 : equipment = 0
                     // Add excersices to db
                     CreateAbdominalExercise.findOrCreate({
                         where: { exercise, type_of_exercise, exercise_description, equipment }
