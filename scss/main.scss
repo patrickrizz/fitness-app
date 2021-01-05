@@ -44,7 +44,7 @@
 .login-bg {  
     background: #000;
     min-height: 100vh;
-
+    
     &::before {    
         content: "";
         background: url('../images/weights.jpg');
@@ -54,7 +54,8 @@
         right: 0px;
         bottom: 0px;
         left: 0px;
-        opacity: .3;
+        opacity: .1;
+        
   }
 }
 
@@ -64,21 +65,19 @@
     display: block;
     height: 100%;
     width: 800px;
-    background: transparent;    
-    -webkit-box-shadow: 10px 10px 35px 3px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 35px 3px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 35px 3px rgba(0, 0, 0, 0.75);
+    
 
     &::before {    
         content: "";
-        background: lighten($bg-color, 8%);
+        background: #1d1d1d;
         background-size: cover;
         position: absolute;
         top: 0px;
         right: 0px;
         bottom: 0px;
         left: 0px;
-        opacity: .8;
+        opacity: .7;
+        border-radius: 15px;
   }
 
     h1 {
@@ -91,10 +90,10 @@
         padding: 0 3rem;
 
         a {
-            background-color: lighten($secondary-color, 5%);
+            background-color: $secondary-color;
 
             &:hover{
-                background-color: darken($secondary-color, 1.2%);
+                background-color: $secondary-color;
             }
         }
     }

@@ -22,13 +22,15 @@ class IndexRouteService {
             let objective = await this._content.objectiveData
             let experienceLevel = await this._content.experienceLevelData
             let strategy = await this._content.strategyData
+            let exercises = await this._profile.userData.dataValues.Workout.dataValues.workout
 
             return {
                 profile,
                 user,
                 objective,
                 experienceLevel,
-                strategy
+                strategy,
+                exercises
             }
         }
     }
