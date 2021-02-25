@@ -13,8 +13,7 @@ module.exports = {
         allowNull: false
       },
       xp_level: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

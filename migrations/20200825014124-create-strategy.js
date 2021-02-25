@@ -9,12 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.STRING
       },
       strategy: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
