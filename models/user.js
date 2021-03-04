@@ -23,10 +23,14 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING
     },
-    facebook_id: DataTypes.STRING,
+    facebook_id: {
+      unique: true,
+      type: DataTypes.STRING
+    },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    name: DataTypes.STRING,
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
     set_up: DataTypes.BOOLEAN
   }, {
     sequelize,
