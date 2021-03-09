@@ -1,6 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const {User, ExperienceLevel, Objective, Strategy, UserStats, Role } = require('../models')
+const { User, ExperienceLevel, Objective, Strategy, UserStats, Role } = require('../models')
 
 passport.use(new GoogleStrategy({
 
@@ -14,8 +14,7 @@ passport.use(new GoogleStrategy({
         where: {
             id: profile.id,
             google_id: profile.id,
-            email: profile.emails[0].value,
-            name: profile.displayName
+            email: profile.emails[0].value
         }
     })
     ExperienceLevel.findOrCreate({

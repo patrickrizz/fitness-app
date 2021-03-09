@@ -8,28 +8,32 @@ module.exports = {
         type: Sequelize.STRING
       },
       google_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       facebook_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true
       },
       first_name: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
       last_name: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       },
-      set_up: {
-        type: Sequelize.BOOLEAN
+      setup: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

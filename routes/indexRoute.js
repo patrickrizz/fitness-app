@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
     if (id) {
         const CreateWorkoutForUserService = require('../services/CreateWorkoutForUserService')
-        new CreateWorkoutForUserService(id).createWorkout()
+        // new CreateWorkoutForUserService(id).createWorkout()
     }
 
     res.render('index', { ...params })

@@ -4,19 +4,15 @@ const router = express.Router()
 
 // Google Oauth routes
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/', failureFlash: true }),
     (req, res) => {
-        if (req.user.id === '106355498027631381428' || req.user.id === '105097979934155160948') {
-            res.redirect('/admin')
-        } else {
-            res.redirect('/')
-        }
+        res.redirect('/')
     })
 
 // Login
 router.post('/login', async (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/admin',
+        successRedirect: '/',
         failureRedirect: '/',
         failureFlash: true
     })(req, res, next)

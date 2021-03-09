@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "npx sequelize-cli db:migrate & jasmine",
-    "start": "npx sequelize-cli db:migrate & nodemon ./bin/www",
+    "start": "npx sequelize-cli db:migrate & npx sequelize-cli db:seed:all & nodemon ./bin/www",
     "startdb": "bash scripts/rundb.sh",
     "secure": "npm audit & snyk test & snyk wizard & snyk protect",
-    "db": "bash scripts/sequelize.sh"
+    "db": "bash scripts/db.sh"
   },
   "author": "Patrick Rizzardi",
   "license": "ISC",

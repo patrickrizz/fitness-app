@@ -7,23 +7,14 @@ class UserSetupService {
     }
 
     userSetup() {
-        let set_up = true
-        let { weight, xp_level, objective, strategy } = this.req.body
-
-        // User.findOne({
-        //     where: { id: this.id },
-        //     include: [ExperienceLevel, Goal]
-        // }).then((setup => {
-        //     setup.update({
-        //         xp, goal
-        //     })
-        // }))
+        let setUp = true
+        let { weight, xp_level, objective, strategy, firstName, lastName } = this.req.body
 
        // Once setup is complete, set to true
         User.findOne({
             where: { id: this.id }
         }).then(setup => {
-            setup.update({ set_up })
+            setup.update({ setup: setUp, first_name: firstName, last_name: lastName })
         })
 
         // Add weight to db

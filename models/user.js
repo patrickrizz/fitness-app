@@ -27,11 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING
     },
-    email: DataTypes.STRING,
+    email: {
+      unique: true,
+      type: DataTypes.STRING
+    },
     password: DataTypes.STRING,
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    set_up: DataTypes.BOOLEAN
+    setup: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'User',
