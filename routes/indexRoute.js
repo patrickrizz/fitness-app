@@ -25,7 +25,14 @@ router.get('/sign-up', (req, res) => {
 
 router.post('/sign-up', async (req, res) => {
     await new UserRegisterService(req, res).registerUserLocal()
-    await res.redirect('/')
+    await res.redirect('/set-up')
+})
+
+router.get('/set-up', ensureAuthenticated, async (req, res) => {
+    let id
+    (!req.user) ? email = null : id = req.user.id
+    let params = await new IndexRouteService(req, id).params()
+    res.render('set-up', { ...params })
 })
 
 router.post('/set-up', ensureAuthenticated, async (req, res) => {

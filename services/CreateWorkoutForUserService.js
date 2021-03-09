@@ -1,6 +1,6 @@
 const Users = require('../lib/User')
 const Exercise = require('../lib/Exercise')
-const { CreateStrategy, Strategy } = require('../models')
+const { CreateStrategy, Strategy } = require('../database/models')
 
 class CreateWorkoutForUserService {
     constructor(id) {

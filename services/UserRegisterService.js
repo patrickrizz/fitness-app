@@ -1,4 +1,4 @@
-const { User, ExperienceLevel, Objective, Strategy, UserStats, Role } = require('../models')
+const { User, ExperienceLevel, Objective, Strategy, UserStats, Role } = require('../database/models')
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
 

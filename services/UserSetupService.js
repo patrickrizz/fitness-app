@@ -1,4 +1,4 @@
-const { User, ExperienceLevel, Objective, Strategy, UserStats } = require('../models')
+const { User, ExperienceLevel, Objective, Strategy, UserStats } = require('../database/models')
 
 class UserSetupService {
     constructor(req) {
