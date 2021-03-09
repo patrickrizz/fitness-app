@@ -5,11 +5,7 @@
 <% } %>
 
 <% if(user){ %>
-    <% if(!profile.setup){ %>
-        <%- include('partials/_setup') %>
-    <% } else {%>
         <%- include('partials/_profile') %>
-    <% } %>
 <% } %>
 
 <%- include('partials/_footer') %>

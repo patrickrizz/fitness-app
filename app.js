@@ -4,13 +4,9 @@ const flash = require('express-flash')
 const express = require('express')
 const path = require('path');
 const app = express();
-const cookieParser = require('cookie-parser')
-const session = require('express-session')
-const passport = require('passport')
 
-let indexRouter = require('./routes/indexRoute')
-let authRouter = require('./routes/authRoute')
-let adminRouter = require('./routes/adminRoute')
+
+
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -19,10 +15,14 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
 
+//cookies
+const cookieParser = require('cookie-parser')
+app.use(cookieParser());
+
 //express session
+const session = require('express-session')
 app.use(session({
     secret: [process.env.SESSION_SECRET, process.env.SESSION_SECRET_2],
     name: 'awesomeSession',
@@ -34,6 +34,7 @@ app.use(session({
 }));
 
 //passport middleware
+const passport = require('passport')
 app.use(passport.initialize())
 app.use(passport.session())
 require('./initializers/localAuth')(passport)
@@ -52,7 +53,10 @@ app.use(function (req, res, next) {
 })
 
 //routes
-app.use('/', indexRouter)
+const UserRouter = require('./routes/user')
+const authRouter = require('./routes/auth')
+const adminRouter = require('./routes/admin')
+app.use('/', UserRouter)
 app.use('/auth', authRouter)
 app.use('/admin', adminRouter)
 
