@@ -14,11 +14,19 @@ class UserSetupRouteService {
             return user
         } else {
             let { user } = await this._req
+<<<<<<< HEAD
             let profile = await this._profile.getUserById
             let objective = await this._content.objectiveData
             let experienceLevel = await this._content.experienceLevelData
             let strategy = await this._content.strategyData
             // let exercises = await this._profile.getUserById.dataValues.Workout.dataValues.workout
+=======
+            let profile = await this._profile.userData
+            let objective = await this._content.objectiveData
+            let experienceLevel = await this._content.experienceLevelData
+            let strategy = await this._content.strategyData
+            // let exercises = await this._profile.userData.dataValues.Workout.dataValues.workout
+>>>>>>> bc768e9fa9fec1c5e597896d4b3c02523c6aa779
 
             return {
                 profile,
