@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
      User.hasOne(models.Objective, {foreignKey: 'user_id'})
      User.hasOne(models.Strategy, {foreignKey: 'user_id'})
      User.hasOne(models.UserStats, {foreignKey: 'user_id'})
-     User.hasOne(models.Role, {foreignKey: 'user_id'})
      User.hasOne(models.Workout, {foreignKey: 'user_id'})
     }
   };
@@ -34,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
+    role: DataTypes.STRING,
     setup: DataTypes.BOOLEAN
   }, {
     sequelize,
