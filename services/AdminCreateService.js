@@ -1,4 +1,4 @@
-const { CreateChestExercise, CreateBicepsExercise, CreateTricepsExercise, CreateLegsExercise, CreateBackExercise, CreateShouldersExercise, CreateAbdominalExercise, CreateExperienceLevel, CreateObjective, CreateRole, CreateStrategy } = require('../models')
+const { CreateChestExercise, CreateBicepsExercise, CreateTricepsExercise, CreateLegsExercise, CreateBackExercise, CreateShouldersExercise, CreateAbdominalExercise, CreateExperienceLevel, CreateObjective, CreateRole, CreateStrategy } = require('../database/models')
 const AdminCreateRouteService = require('./AdminCreateRouteService')
 
 class AdminCreate {
