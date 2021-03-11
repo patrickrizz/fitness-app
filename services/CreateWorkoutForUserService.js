@@ -5,7 +5,7 @@ const { CreateStrategy, Strategy } = require('../database/models')
 class CreateWorkoutForUserService {
     constructor(id) {
         this._user_id = id
-        this._userData = new Users(id).userData
+        this._getUserById = new Users(id).userData
     }
 
     async createWorkout() {

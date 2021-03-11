@@ -4,7 +4,7 @@ const Users = require('../../lib/User');
 describe('user data', function() {    
     it('returns data for a user', function() {
         let user = new Users(db, 1);
-        user.userData
+        user.getUserById
         .then( (data) => {
             expect(data.google_id).toBe("randomGoogleId")
             expect(data.facebook_id).toBe("randomFBId")

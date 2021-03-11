@@ -11,13 +11,9 @@ class UserSetupRouteService {
     async params() {
         if (!this._req.session.passport || !this._req.user) {
             let user = ''
-
-
-            return {
-                user
-            }
+            return user
         } else {
-            let user = await this._req.user
+            let { user } = await this._req
             let profile = await this._profile.userData
             let objective = await this._content.objectiveData
             let experienceLevel = await this._content.experienceLevelData

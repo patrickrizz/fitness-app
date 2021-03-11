@@ -3,11 +3,13 @@ const passport = require('passport')
 module.exports = {
     googleOauth: async (req, res) => {
         let id = req.user.id
+        await new Promise(resolve => setTimeout(resolve, 250)) //0.25seconds
         const setup = await _setupVerification(id, res)
         if (!setup) { res.redirect('/set-up') } else { res.redirect('/') }
     },
     localAuth: async (req, res, next) => {
         let id = req.user.id
+        await new Promise(resolve => setTimeout(resolve, 250)) //0.25seconds
         const setup = await _setupVerification(id, res)
         if (!setup) { res.redirect('/set-up') } else { res.redirect('/') }
     },
@@ -20,6 +22,6 @@ module.exports = {
 
 const _setupVerification = async (id, res) => {
     const Users = require("../lib/User")
-    const { setup } = await new Users(id).userData
+    const { setup } = await new Users(id).getUserById
     if (setup) return true
 }

@@ -1,7 +1,7 @@
 const Users = require("../lib/User")
 const Create = require("../lib/Create")
 
-class IndexRouteService {
+class IndexRoute {
     constructor(req, id) {
         this._req = req
         this._profile = new Users(id)
@@ -11,8 +11,6 @@ class IndexRouteService {
     async params() {
         if (!this._req.session.passport || !this._req.user) {
             let user = ''
-
-
             return {
                 user
             }
@@ -36,4 +34,4 @@ class IndexRouteService {
     }
 }
 
-module.exports = IndexRouteService;
+module.exports = IndexRoute;
